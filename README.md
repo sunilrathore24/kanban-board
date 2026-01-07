@@ -1,6 +1,6 @@
 # 🚀 Real-time Kanban Board
 
-A modern, feature-rich Kanban board built with Angular, featuring real-time collaboration, drag-and-drop functionality, and CRDT-based conflict resolution.
+A modern, feature-rich Kanban board built with Angular, featuring real-time collaboration, drag-and-drop functionality, and CRDT-based conflict resolution stretegy.
 
 ## ✨ Features
 
