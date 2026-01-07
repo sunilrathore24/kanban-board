@@ -1,0 +1,295 @@
+.kanban-column {
+  background: #f6f8fa;
+  border-radius: 6px;
+  padding: 12px;
+  min-height: 400px;
+  width: 280px;
+  margin-right: 16px;
+  border-left: 4px solid #0366d6;
+  display: flex;
+  flex-direction: column;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.column-title-section {
+  flex: 1;
+}
+
+.column-title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+  cursor: pointer;
+
+  &:hover {
+    color: #0366d6;
+  }
+}
+
+.title-input {
+  width: 100%;
+  border: 1px solid #0366d6;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+  outline: none;
+  background: white;
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.2);
+  }
+}
+
+.column-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #586069;
+}
+
+.card-count {
+  font-weight: 500;
+}
+
+.wip-limit {
+  &.exceeded {
+    color: #d73a49;
+    font-weight: 600;
+  }
+}
+
+.column-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.add-card-btn,
+.column-menu-btn {
+  background: none;
+  border: 1px solid #e1e4e8;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #586069;
+  font-size: 14px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: white;
+    border-color: #0366d6;
+    color: #0366d6;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.add-card-btn {
+  font-weight: 600;
+}
+
+.column-description {
+  margin-bottom: 12px;
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #586069;
+    line-height: 1.4;
+  }
+}
+
+.add-card-form {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.new-card-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #24292e;
+  padding: 4px 0;
+  background: transparent;
+
+  &::placeholder {
+    color: #586069;
+  }
+}
+
+.add-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-btn {
+  background: #0366d6;
+  color: white;
+  border: 1px solid #0366d6;
+
+  &:hover:not(:disabled) {
+    background: #0256cc;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cancel-btn {
+  background: white;
+  color: #586069;
+  border: 1px solid #e1e4e8;
+
+  &:hover {
+    background: #f6f8fa;
+  }
+}
+
+.cards-container {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+}
+
+.card-drag-container {
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #586069;
+
+  p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+  }
+}
+
+.add-first-card-btn {
+  background: #0366d6;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #0256cc;
+  }
+}
+
+.drop-placeholder {
+  background: rgba(3, 102, 214, 0.1);
+  border: 2px dashed #0366d6;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-card {
+  color: #0366d6;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.column-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 150px;
+  padding: 4px 0;
+
+  button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    color: #24292e;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #f6f8fa;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// CDK Drag and Drop styles
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: rotate(2deg);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.4;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

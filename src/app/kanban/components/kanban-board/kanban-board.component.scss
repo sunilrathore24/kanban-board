@@ -1,0 +1,295 @@
+.kanban-board {
+  min-height: 100vh;
+  background: #fafbfc;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.board-title-section {
+  flex: 1;
+}
+
+.board-title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.board-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: #586069;
+}
+
+.total-cards {
+  font-weight: 500;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+
+  &.status-connected {
+    background: #dcffe4;
+    color: #28a745;
+  }
+
+  &.status-connecting,
+  &.status-reconnecting {
+    background: #fff8e1;
+    color: #f66a0a;
+  }
+
+  &.status-disconnected,
+  &.status-error {
+    background: #ffeef0;
+    color: #d73a49;
+  }
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.board-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.add-column-btn {
+  background: #0366d6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: #0256cc;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.board-content {
+  position: relative;
+}
+
+.columns-container {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  min-height: 500px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f6f8fa;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5da;
+    border-radius: 4px;
+
+    &:hover {
+      background: #959da5;
+    }
+  }
+}
+
+.empty-board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.empty-content {
+  max-width: 400px;
+  padding: 40px;
+
+  h2 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #24292e;
+  }
+
+  p {
+    margin: 0 0 24px 0;
+    font-size: 16px;
+    color: #586069;
+    line-height: 1.5;
+  }
+}
+
+.create-first-column-btn {
+  background: #0366d6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #0256cc;
+  }
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f6f8fa;
+  border-top: 3px solid #0366d6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  margin: 0;
+  font-size: 16px;
+  color: #586069;
+}
+
+.error-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.error-content {
+  max-width: 400px;
+  padding: 40px;
+
+  h3 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #d73a49;
+  }
+
+  p {
+    margin: 0 0 24px 0;
+    font-size: 14px;
+    color: #586069;
+    line-height: 1.5;
+  }
+}
+
+.retry-btn {
+  background: #0366d6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #0256cc;
+  }
+}
+
+// Theme support
+.kanban-board.theme-applied {
+  background: var(--board-bg-color, #fafbfc);
+  color: var(--text-color, #24292e);
+
+  .board-title {
+    color: var(--text-color, #24292e);
+  }
+
+  .add-column-btn {
+    background: var(--primary-color, #0366d6);
+
+    &:hover:not(:disabled) {
+      background: var(--primary-color, #0366d6);
+      filter: brightness(0.9);
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .kanban-board {
+    padding: 12px;
+  }
+
+  .board-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .board-title {
+    font-size: 20px;
+  }
+
+  .columns-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kanban-column {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
