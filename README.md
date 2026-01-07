@@ -72,7 +72,7 @@ This project includes comprehensive Storybook documentation with interactive exa
 - **Interactive Demos**: Drag-drop and collaboration examples
 - **Component Library**: Individual component documentation
 
-Visit the [live Storybook documentation](https://your-username.github.io/kanban-board/) to explore all features.
+Visit the [live Storybook documentation](https://sunilrathore24.github.io/kanban-board/) to explore all features.
 
 ## 🏗️ Architecture
 
@@ -145,6 +145,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Live Demo**: [View Storybook Documentation](https://your-username.github.io/kanban-board/)
+**Live Demo**: [View Storybook Documentation](https://sunilrathore24.github.io/kanban-board/)
 
 **Built with ❤️ using Angular and TypeScript**

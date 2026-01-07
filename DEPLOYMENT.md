@@ -5,8 +5,8 @@
 After creating your repository on GitHub, run these commands in your terminal:
 
 ```bash
-# Add GitHub remote (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/kanban-board.git
+# Add GitHub remote
+git remote add origin https://github.com/sunilrathore24/kanban-board.git
 
 # Push to GitHub
 git branch -M main
@@ -15,10 +15,10 @@ git push -u origin main
 
 ## GitHub Pages Setup
 
-1. Go to your repository on GitHub
+1. Go to your repository on GitHub: https://github.com/sunilrathore24/kanban-board
 2. Click **Settings** tab
 3. Scroll down to **Pages** section (left sidebar)
-4. Under **Source**, select **GitHub Actions**
+4. Under **Source**, select **GitHub Actions** (NOT "Deploy from a branch")
 5. The workflow will automatically deploy your Storybook
 
 ## Automatic Deployment
@@ -26,7 +26,7 @@ git push -u origin main
 The repository includes a GitHub Actions workflow that will:
 - ✅ Automatically build Storybook on every push to main
 - ✅ Deploy to GitHub Pages
-- ✅ Make your Kanban board available at: `https://YOUR_USERNAME.github.io/kanban-board/`
+- ✅ Make your Kanban board available at: `https://sunilrathore24.github.io/kanban-board/`
 
 ## Manual Deployment (Alternative)
 
