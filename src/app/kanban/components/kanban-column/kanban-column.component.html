@@ -1,0 +1,139 @@
+<div class="kanban-column" [style.border-left-color]="column.color">
+  <!-- Column Header -->
+  <div class="column-header">
+    <div class="column-title-section">
+      @if (isEditingTitle) {
+        <input
+          #titleInput
+          [(ngModel)]="editableTitle"
+          class="title-input"
+          (blur)="saveTitleChanges()"
+          (keydown.enter)="saveTitleChanges()"
+          (keydown.escape)="cancelTitleEditing()"
+          maxlength="50"
+        />
+      } @else {
+        <h2 class="column-title" (dblclick)="startTitleEditing()">
+          {{ column.title }}
+        </h2>
+      }
+
+      <div class="column-info">
+        <span class="card-count">{{ cards.length }}</span>
+        @if (column.wipLimit) {
+          <span class="wip-limit" [class.exceeded]="isWipLimitExceeded()">
+            / {{ column.wipLimit }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <div class="column-actions">
+      <button
+        class="add-card-btn"
+        (click)="startAddingCard()"
+        [disabled]="isAddingCard || !allowCardCreation()"
+        title="Add new card"
+      >
+        +
+      </button>
+
+      <button
+        class="column-menu-btn"
+        (click)="toggleColumnMenu()"
+        title="Column options"
+      >
+        ⋮
+      </button>
+    </div>
+  </div>
+
+  <!-- Column Description -->
+  @if (column.description) {
+    <div class="column-description">
+      <p>{{ column.description }}</p>
+    </div>
+  }
+
+  <!-- Add Card Form -->
+  @if (isAddingCard) {
+    <div class="add-card-form">
+      <input
+        #newCardInput
+        [(ngModel)]="newCardTitle"
+        class="new-card-input"
+        placeholder="Enter card title..."
+        (keydown.enter)="addCard()"
+        (keydown.escape)="cancelAddingCard()"
+        (blur)="addCard()"
+        maxlength="100"
+      />
+      <div class="add-card-actions">
+        <button class="save-btn" (click)="addCard()" [disabled]="!newCardTitle.trim()">
+          Add Card
+        </button>
+        <button class="cancel-btn" (click)="cancelAddingCard()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Cards Drop List -->
+  <div
+    class="cards-container"
+    cdkDropList
+    [cdkDropListData]="cards"
+    [cdkDropListConnectedTo]="connectedDropLists"
+    [cdkDropListDisabled]="!allowDrop"
+    (cdkDropListDropped)="onCardDropped($event)"
+    [id]="'column-' + column.id"
+  >
+    @for (card of cards; track card.id) {
+      <div
+        cdkDrag
+        [cdkDragData]="card"
+        [cdkDragDisabled]="!allowDrag"
+        class="card-drag-container"
+      >
+        <app-kanban-card
+          [card]="card"
+          [editable]="editable"
+          [isSelected]="selectedCardId === card.id"
+          [isDragging]="false"
+          (cardUpdated)="onCardUpdated(card.id, $event)"
+          (cardDeleted)="onCardDeleted($event)"
+          (cardSelected)="onCardSelected($event)"
+        ></app-kanban-card>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (cards.length === 0 && !isAddingCard) {
+      <div class="empty-state">
+        <p>No cards yet</p>
+        <button class="add-first-card-btn" (click)="startAddingCard()">
+          Add a card
+        </button>
+      </div>
+    }
+
+    <!-- Drop Placeholder -->
+    <div class="drop-placeholder" *cdkDragPlaceholder>
+      <div class="placeholder-card">Drop card here</div>
+    </div>
+  </div>
+
+  <!-- Column Menu -->
+  @if (showColumnMenu) {
+    <div class="column-menu" (clickOutside)="closeColumnMenu()">
+      <button (click)="startTitleEditing(); closeColumnMenu()">Edit Title</button>
+      <button (click)="clearColumn(); closeColumnMenu()" [disabled]="cards.length === 0">
+        Clear All Cards
+      </button>
+      <button (click)="toggleCollapse(); closeColumnMenu()">
+        {{ column.isCollapsed ? 'Expand' : 'Collapse' }}
+      </button>
+    </div>
+  }
+</div>

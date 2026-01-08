@@ -5022,7 +5022,7 @@
         },
         {
             "name": "KanbanBoardComponent",
-            "id": "component-KanbanBoardComponent-3708afb146e7c9f8674c8759337e194dc4e1b4c936f3ddd2ac044d2ef040ef9002fbfa50861d0f3b7259d1360cb71904975babff24552877d3c7388984b3e71d",
+            "id": "component-KanbanBoardComponent-ee3ec23cb32374676e99c99e3715659eb62483253dc899afb6934e296259b25bd74f269f9febe11290958df4b69c5fcfa1f4b1f3c7c76b6e579faf4b7bdf0030",
             "file": "src/app/kanban/components/kanban-board/kanban-board.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -5035,8 +5035,9 @@
                 "./kanban-board.component.scss"
             ],
             "styles": [],
-            "template": "<div class=\"kanban-board\" [class.theme-applied]=\"theme\" [style]=\"getBoardStyles()\">\n  <!-- Board Header -->\n  <div class=\"board-header\">\n    <div class=\"board-title-section\">\n      <h1 class=\"board-title\">{{ boardState?.title || 'Kanban Board' }}</h1>\n      <div class=\"board-info\">\n        <span class=\"total-cards\">{{ getTotalCardCount() }} cards</span>\n        <div class=\"connection-status\" [class]=\"'status-' + connectionStatus\">\n          <span class=\"status-indicator\"></span>\n          {{ getConnectionStatusText() }}\n        </div>\n      </div>\n    </div>\n\n    <div class=\"board-actions\">\n      <button\n        class=\"add-column-btn\"\n        (click)=\"addColumn()\"\n        [disabled]=\"config.allowColumnReordering === false\"\n        [title]=\"config.allowColumnReordering === false ? 'Column reordering disabled' : 'Add new column'\"\n      >\n        + Add Column\n      </button>\n    </div>\n  </div>\n\n  <!-- Board Content -->\n  <div class=\"board-content\" cdkDropListGroup>\n    <!-- Columns -->\n    <div class=\"columns-container\" *ngIf=\"boardState && boardState.columns.length > 0\">\n      <app-kanban-column\n        *ngFor=\"let column of boardState.columns; trackBy: trackByColumnId\"\n        [column]=\"column\"\n        [cards]=\"getCardsForColumn(column.id)\"\n        [allowDrop]=\"config.allowCardCreation !== false\"\n        [allowDrag]=\"config.allowCardCreation !== false\"\n        [editable]=\"config.allowCardEditing !== false\"\n        [connectedDropLists]=\"getConnectedDropLists()\"\n        [selectedCardId]=\"selectedCardId\"\n        (cardDropped)=\"onCardDropped($event)\"\n        (cardAdded)=\"onCardAdded($event)\"\n        (cardUpdated)=\"onCardUpdated($event)\"\n        (cardDeleted)=\"onCardDeleted($event)\"\n        (cardSelected)=\"onCardSelected($event)\"\n        (columnUpdated)=\"onColumnUpdated($event)\"\n      ></app-kanban-column>\n    </div>\n\n    <!-- Empty Board State -->\n    <div class=\"empty-board\" *ngIf=\"!boardState || boardState.columns.length === 0\">\n      <div class=\"empty-content\">\n        <h2>Welcome to your Kanban Board</h2>\n        <p>Get started by adding your first column</p>\n        <button class=\"create-first-column-btn\" (click)=\"addColumn()\">\n          Create First Column\n        </button>\n      </div>\n    </div>\n\n    <!-- Loading State -->\n    <div class=\"loading-state\" *ngIf=\"isLoading\">\n      <div class=\"loading-spinner\"></div>\n      <p>Loading board...</p>\n    </div>\n  </div>\n\n  <!-- Error State -->\n  <div class=\"error-state\" *ngIf=\"error\">\n    <div class=\"error-content\">\n      <h3>Something went wrong</h3>\n      <p>{{ error }}</p>\n      <button class=\"retry-btn\" (click)=\"retryConnection()\">\n        Try Again\n      </button>\n    </div>\n  </div>\n</div>\n",
-            "templateUrl": [],
+            "templateUrl": [
+                "./kanban-board.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
@@ -5044,7 +5045,7 @@
                     "name": "boardId",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 126,
+                    "line": 43,
                     "type": "string",
                     "decorators": []
                 },
@@ -5053,7 +5054,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 128,
+                    "line": 45,
                     "type": "KanbanCard[]",
                     "decorators": []
                 },
@@ -5062,7 +5063,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 127,
+                    "line": 44,
                     "type": "KanbanColumn[]",
                     "decorators": []
                 },
@@ -5071,7 +5072,7 @@
                     "defaultValue": "{}",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 129,
+                    "line": 46,
                     "type": "KanbanBoardConfig",
                     "decorators": []
                 },
@@ -5080,7 +5081,7 @@
                     "defaultValue": "{}",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 130,
+                    "line": 47,
                     "type": "KanbanTheme",
                     "decorators": []
                 }
@@ -5091,7 +5092,7 @@
                     "defaultValue": "new EventEmitter<KanbanCard>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 133,
+                    "line": 50,
                     "type": "EventEmitter"
                 },
                 {
@@ -5099,7 +5100,7 @@
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 135,
+                    "line": 52,
                     "type": "EventEmitter"
                 },
                 {
@@ -5107,7 +5108,7 @@
                     "defaultValue": "new EventEmitter<CardMoveEvent>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 132,
+                    "line": 49,
                     "type": "EventEmitter"
                 },
                 {
@@ -5115,7 +5116,7 @@
                     "defaultValue": "new EventEmitter<KanbanCard>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 134,
+                    "line": 51,
                     "type": "EventEmitter"
                 },
                 {
@@ -5123,7 +5124,7 @@
                     "defaultValue": "new EventEmitter<ConnectionStatus>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 136,
+                    "line": 53,
                     "type": "EventEmitter"
                 }
             ],
@@ -5137,7 +5138,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 142
+                    "line": 59
                 },
                 {
                     "name": "cdr",
@@ -5148,7 +5149,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 140,
+                    "line": 57,
                     "modifierKind": [
                         123
                     ]
@@ -5162,7 +5163,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 143
+                    "line": 60
                 },
                 {
                     "name": "destroy$",
@@ -5173,7 +5174,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 138,
+                    "line": 55,
                     "modifierKind": [
                         123
                     ]
@@ -5187,7 +5188,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 146
+                    "line": 63
                 },
                 {
                     "name": "isLoading",
@@ -5198,7 +5199,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 145
+                    "line": 62
                 },
                 {
                     "name": "kanbanService",
@@ -5209,7 +5210,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 139,
+                    "line": 56,
                     "modifierKind": [
                         123
                     ]
@@ -5223,7 +5224,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 144
+                    "line": 61
                 }
             ],
             "methodsClass": [
@@ -5246,7 +5247,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 542,
+                    "line": 459,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5276,7 +5277,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 496,
+                    "line": 413,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5293,7 +5294,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 571,
+                    "line": 488,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5321,7 +5322,7 @@
                     "optional": false,
                     "returnType": "KanbanCard | undefined",
                     "typeParameters": [],
-                    "line": 661,
+                    "line": 578,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5345,7 +5346,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 666,
+                    "line": 583,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5358,7 +5359,7 @@
                     "optional": false,
                     "returnType": "literal type",
                     "typeParameters": [],
-                    "line": 636,
+                    "line": 553,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5375,7 +5376,7 @@
                     "optional": false,
                     "returnType": "KanbanCard[]",
                     "typeParameters": [],
-                    "line": 608,
+                    "line": 525,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5396,7 +5397,7 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 615,
+                    "line": 532,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5406,7 +5407,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 625,
+                    "line": 542,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5416,7 +5417,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 670,
+                    "line": 587,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5429,7 +5430,7 @@
                     "optional": false,
                     "returnType": "number",
                     "typeParameters": [],
-                    "line": 620,
+                    "line": 537,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5439,7 +5440,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 179,
+                    "line": 96,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5452,7 +5453,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 234,
+                    "line": 151,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5465,7 +5466,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 158,
+                    "line": 75,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5497,7 +5498,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 575,
+                    "line": 492,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5536,7 +5537,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 173,
+                    "line": 90,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5546,7 +5547,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 148,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5563,7 +5564,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 318,
+                    "line": 235,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5591,7 +5592,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 418,
+                    "line": 335,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5619,7 +5620,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 253,
+                    "line": 170,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5647,7 +5648,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 461,
+                    "line": 378,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5675,7 +5676,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 369,
+                    "line": 286,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5703,7 +5704,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 467,
+                    "line": 384,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5724,7 +5725,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 656,
+                    "line": 573,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5747,7 +5748,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 652,
+                    "line": 569,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5790,7 +5791,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 557,
+                    "line": 474,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5822,10 +5823,6 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
                     "name": "CdkDropListGroup"
                 },
                 {
@@ -5836,7 +5833,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  OnInit,\r\n  OnDestroy,\r\n  ChangeDetectorRef,\r\n  inject\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport {\r\n  CdkDragDrop,\r\n  CdkDropListGroup\r\n} from '@angular/cdk/drag-drop';\r\nimport { Subject, takeUntil } from 'rxjs';\r\n\r\nimport {\r\n  KanbanCard,\r\n  KanbanColumn,\r\n  KanbanBoardState,\r\n  KanbanBoardConfig,\r\n  KanbanTheme,\r\n  CreateKanbanCardRequest,\r\n  UpdateKanbanCardRequest\r\n} from '../../models';\r\nimport {\r\n  CardMoveEvent,\r\n  ConnectionStatus\r\n} from '../../types';\r\nimport { KanbanService } from '../../services';\r\nimport { KanbanColumnComponent } from '../kanban-column/kanban-column.component';\r\n\r\n@Component({\r\n  selector: 'app-kanban-board',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    CdkDropListGroup,\r\n    KanbanColumnComponent\r\n  ],\r\n  template: `\r\n    <div class=\"kanban-board\" [class.theme-applied]=\"theme\" [style]=\"getBoardStyles()\">\r\n      <!-- Board Header -->\r\n      <div class=\"board-header\">\r\n        <div class=\"board-title-section\">\r\n          <h1 class=\"board-title\">{{ boardState?.title || 'Kanban Board' }}</h1>\r\n          <div class=\"board-info\">\r\n            <span class=\"total-cards\">{{ getTotalCardCount() }} cards</span>\r\n            <div class=\"connection-status\" [class]=\"'status-' + connectionStatus\">\r\n              <span class=\"status-indicator\"></span>\r\n              {{ getConnectionStatusText() }}\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"board-actions\">\r\n          <button\r\n            class=\"add-column-btn\"\r\n            (click)=\"addColumn()\"\r\n            [disabled]=\"config.allowColumnReordering === false\"\r\n            [title]=\"config.allowColumnReordering === false ? 'Column reordering disabled' : 'Add new column'\"\r\n          >\r\n            + Add Column\r\n          </button>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Board Content -->\r\n      <div class=\"board-content\" cdkDropListGroup>\r\n        <!-- Columns -->\r\n        <div class=\"columns-container\" *ngIf=\"boardState && boardState.columns.length > 0\">\r\n          <app-kanban-column\r\n            *ngFor=\"let column of boardState.columns; trackBy: trackByColumnId\"\r\n            [column]=\"column\"\r\n            [cards]=\"getCardsForColumn(column.id)\"\r\n            [allowDrop]=\"config.allowCardCreation !== false\"\r\n            [allowDrag]=\"config.allowCardCreation !== false\"\r\n            [editable]=\"config.allowCardEditing !== false\"\r\n            [connectedDropLists]=\"getConnectedDropLists()\"\r\n            [selectedCardId]=\"selectedCardId\"\r\n            (cardDropped)=\"onCardDropped($event)\"\r\n            (cardAdded)=\"onCardAdded($event)\"\r\n            (cardUpdated)=\"onCardUpdated($event)\"\r\n            (cardDeleted)=\"onCardDeleted($event)\"\r\n            (cardSelected)=\"onCardSelected($event)\"\r\n            (columnUpdated)=\"onColumnUpdated($event)\"\r\n          ></app-kanban-column>\r\n        </div>\r\n\r\n        <!-- Empty Board State -->\r\n        <div class=\"empty-board\" *ngIf=\"!boardState || boardState.columns.length === 0\">\r\n          <div class=\"empty-content\">\r\n            <h2>Welcome to your Kanban Board</h2>\r\n            <p>Get started by adding your first column</p>\r\n            <button class=\"create-first-column-btn\" (click)=\"addColumn()\">\r\n              Create First Column\r\n            </button>\r\n          </div>\r\n        </div>\r\n\r\n        <!-- Loading State -->\r\n        <div class=\"loading-state\" *ngIf=\"isLoading\">\r\n          <div class=\"loading-spinner\"></div>\r\n          <p>Loading board...</p>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Error State -->\r\n      <div class=\"error-state\" *ngIf=\"error\">\r\n        <div class=\"error-content\">\r\n          <h3>Something went wrong</h3>\r\n          <p>{{ error }}</p>\r\n          <button class=\"retry-btn\" (click)=\"retryConnection()\">\r\n            Try Again\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  `,\r\n  styleUrls: ['./kanban-board.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class KanbanBoardComponent implements OnInit, OnDestroy {\r\n  @Input() boardId!: string;\r\n  @Input() columns: KanbanColumn[] = [];\r\n  @Input() cards: KanbanCard[] = [];\r\n  @Input() config: KanbanBoardConfig = {};\r\n  @Input() theme: KanbanTheme = {};\r\n\r\n  @Output() cardMoved = new EventEmitter<CardMoveEvent>();\r\n  @Output() cardCreated = new EventEmitter<KanbanCard>();\r\n  @Output() cardUpdated = new EventEmitter<KanbanCard>();\r\n  @Output() cardDeleted = new EventEmitter<string>();\r\n  @Output() connectionStatusChanged = new EventEmitter<ConnectionStatus>();\r\n\r\n  private destroy$ = new Subject<void>();\r\n  private kanbanService = inject(KanbanService);\r\n  private cdr = inject(ChangeDetectorRef);\r\n\r\n  boardState: KanbanBoardState | null = null;\r\n  connectionStatus: ConnectionStatus = 'disconnected';\r\n  selectedCardId: string | null = null;\r\n  isLoading = false;\r\n  error: string | null = null;\r\n\r\n  ngOnInit(): void {\r\n    // Always initialize from inputs first (for Storybook compatibility)\r\n    this.initializeFromInputs();\r\n\r\n    // If we have a boardId, also try to initialize the service\r\n    if (this.boardId) {\r\n      this.initializeBoard();\r\n    }\r\n  }\r\n\r\n  private initializeFromInputs(): void {\r\n    // Initialize directly from input properties (for Storybook)\r\n    this.boardState = {\r\n      id: this.boardId || 'storybook-board',\r\n      title: 'Kanban Board',\r\n      columns: [...(this.columns || [])],\r\n      cards: [...(this.cards || [])],\r\n      lastModified: new Date(),\r\n      version: 1\r\n    };\r\n    this.isLoading = false;\r\n    this.connectionStatus = 'disconnected';\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.destroy$.next();\r\n    this.destroy$.complete();\r\n    this.kanbanService.disconnectFromBoard();\r\n  }\r\n\r\n  private initializeBoard(): void {\r\n    this.isLoading = true;\r\n    this.error = null;\r\n\r\n    try {\r\n      // Subscribe to board state changes\r\n      this.kanbanService.getBoardState(this.boardId)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: (state) => {\r\n            // Merge service state with input data\r\n            this.boardState = {\r\n              ...state,\r\n              columns: state.columns.length > 0 ? state.columns : this.columns,\r\n              cards: state.cards.length > 0 ? state.cards : this.cards\r\n            };\r\n            this.isLoading = false;\r\n            this.cdr.markForCheck();\r\n          },\r\n          error: (error) => {\r\n            // Fallback to input properties for Storybook\r\n            console.warn('KanbanService not available, using input properties:', error);\r\n            this.isLoading = false;\r\n            this.cdr.markForCheck();\r\n          }\r\n        });\r\n\r\n      // Subscribe to connection status\r\n      this.kanbanService.getConnectionStatus()\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe(status => {\r\n          this.connectionStatus = status;\r\n          this.connectionStatusChanged.emit(status);\r\n          this.cdr.markForCheck();\r\n        });\r\n\r\n      // Connect to board for real-time updates\r\n      if (this.config.enableRealTimeSync !== false) {\r\n        this.kanbanService.connectToBoard(this.boardId)\r\n          .pipe(takeUntil(this.destroy$))\r\n          .subscribe();\r\n      }\r\n\r\n      // Initialize with provided data if available\r\n      if (this.columns.length > 0 || this.cards.length > 0) {\r\n        this.initializeBoardWithData();\r\n      }\r\n    } catch (error) {\r\n      // Fallback for Storybook when services aren't available\r\n      console.warn('KanbanService not available, keeping input properties');\r\n      this.isLoading = false;\r\n      this.cdr.markForCheck();\r\n    }\r\n  }\r\n\r\n  private initializeBoardWithData(): void {\r\n    if (!this.boardState) return;\r\n\r\n    const updatedState: Partial<KanbanBoardState> = {};\r\n\r\n    if (this.columns.length > 0) {\r\n      updatedState.columns = this.columns;\r\n    }\r\n\r\n    if (this.cards.length > 0) {\r\n      updatedState.cards = this.cards;\r\n    }\r\n\r\n    if (Object.keys(updatedState).length > 0) {\r\n      this.kanbanService.updateBoardState(this.boardId, updatedState);\r\n    }\r\n  }\r\n\r\n  // Card operations\r\n  onCardDropped(event: CdkDragDrop<KanbanCard[]>): void {\r\n    const card = event.item.data as KanbanCard;\r\n    const targetColumnId = event.container.id.replace('column-', '');\r\n    const targetPosition = event.currentIndex;\r\n\r\n    // Handle drag-drop locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedCards = [...this.boardState.cards];\r\n      const cardIndex = updatedCards.findIndex(c => c.id === card.id);\r\n\r\n      if (cardIndex !== -1) {\r\n        // Update card's column and position\r\n        updatedCards[cardIndex] = {\r\n          ...updatedCards[cardIndex],\r\n          columnId: targetColumnId,\r\n          position: targetPosition,\r\n          updatedAt: new Date()\r\n        };\r\n\r\n        // Update positions of other cards in the target column\r\n        const targetColumnCards = updatedCards\r\n          .filter(c => c.columnId === targetColumnId && c.id !== card.id)\r\n          .sort((a, b) => a.position - b.position);\r\n\r\n        targetColumnCards.forEach((c, index) => {\r\n          const newPosition = index >= targetPosition ? index + 1 : index;\r\n          const cardIdx = updatedCards.findIndex(uc => uc.id === c.id);\r\n          if (cardIdx !== -1) {\r\n            updatedCards[cardIdx] = { ...updatedCards[cardIdx], position: newPosition };\r\n          }\r\n        });\r\n\r\n        // Update board state\r\n        this.boardState = {\r\n          ...this.boardState,\r\n          cards: updatedCards,\r\n          lastModified: new Date(),\r\n          version: this.boardState.version + 1\r\n        };\r\n\r\n        this.cdr.markForCheck();\r\n\r\n        // Emit move event\r\n        const moveEvent: CardMoveEvent = {\r\n          cardId: card.id,\r\n          sourceColumnId: card.columnId,\r\n          targetColumnId,\r\n          sourcePosition: card.position,\r\n          targetPosition: targetPosition,\r\n          card: updatedCards[cardIndex]\r\n        };\r\n        this.cardMoved.emit(moveEvent);\r\n      }\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    if (event.previousContainer === event.container) {\r\n      // Reordering within same column\r\n      this.moveCard(card.id, targetColumnId, targetPosition);\r\n    } else {\r\n      // Moving between columns\r\n      this.moveCard(card.id, targetColumnId, targetPosition);\r\n    }\r\n  }\r\n\r\n  onCardAdded(cardRequest: CreateKanbanCardRequest): void {\r\n    // Handle card creation locally for Storybook\r\n    if (this.boardState) {\r\n      const newCard: KanbanCard = {\r\n        id: `card_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`,\r\n        title: cardRequest.title,\r\n        description: cardRequest.description,\r\n        columnId: cardRequest.columnId,\r\n        position: this.getCardsForColumn(cardRequest.columnId).length,\r\n        createdAt: new Date(),\r\n        updatedAt: new Date(),\r\n        createdBy: 'storybook-user',\r\n        assignees: cardRequest.assignees,\r\n        tags: cardRequest.tags,\r\n        priority: cardRequest.priority,\r\n        dueDate: cardRequest.dueDate,\r\n        metadata: cardRequest.metadata\r\n      };\r\n\r\n      // Update board state\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        cards: [...this.boardState.cards, newCard],\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      this.cdr.markForCheck();\r\n      this.cardCreated.emit(newCard);\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.createCard(this.boardId, cardRequest.columnId, cardRequest)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: (card) => {\r\n            // Only emit if we didn't handle it locally\r\n            if (!this.boardState) {\r\n              this.cardCreated.emit(card);\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to create card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  onCardUpdated(event: { cardId: string; updates: UpdateKanbanCardRequest }): void {\r\n    // Handle card updates locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedCards = this.boardState.cards.map(card => {\r\n        if (card.id === event.cardId) {\r\n          return {\r\n            ...card,\r\n            ...event.updates,\r\n            updatedAt: new Date()\r\n          };\r\n        }\r\n        return card;\r\n      });\r\n\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        cards: updatedCards,\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      this.cdr.markForCheck();\r\n\r\n      const updatedCard = updatedCards.find(c => c.id === event.cardId);\r\n      if (updatedCard) {\r\n        this.cardUpdated.emit(updatedCard);\r\n      }\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.updateCard(this.boardId, event.cardId, event.updates)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: (card) => {\r\n            // Only emit if we didn't handle it locally\r\n            if (!this.boardState) {\r\n              this.cardUpdated.emit(card);\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to update card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  onCardDeleted(cardId: string): void {\r\n    // Handle card deletion locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedCards = this.boardState.cards.filter(card => card.id !== cardId);\r\n\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        cards: updatedCards,\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      this.cdr.markForCheck();\r\n      this.cardDeleted.emit(cardId);\r\n\r\n      if (this.selectedCardId === cardId) {\r\n        this.selectedCardId = null;\r\n      }\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.deleteCard(this.boardId, cardId)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: () => {\r\n            // Only emit if we didn't handle it locally\r\n            if (!this.boardState) {\r\n              this.cardDeleted.emit(cardId);\r\n              if (this.selectedCardId === cardId) {\r\n                this.selectedCardId = null;\r\n              }\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to delete card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  onCardSelected(cardId: string): void {\r\n    this.selectedCardId = this.selectedCardId === cardId ? null : cardId;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  // Column operations\r\n  onColumnUpdated(event: { columnId: string; updates: Partial<KanbanColumn> }): void {\r\n    // Handle column updates locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedColumns = this.boardState.columns.map(col =>\r\n        col.id === event.columnId ? { ...col, ...event.updates } : col\r\n      );\r\n\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        columns: updatedColumns,\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      // Also update input properties to keep them in sync\r\n      this.columns = [...updatedColumns];\r\n      this.cdr.markForCheck();\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      if (this.boardId) {\r\n        this.kanbanService.updateBoardState(this.boardId, { columns: this.boardState?.columns || this.columns });\r\n      }\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  addColumn(): void {\r\n    if (!this.boardState) {\r\n      // Initialize boardState if it doesn't exist\r\n      this.boardState = {\r\n        id: this.boardId || 'storybook-board',\r\n        title: 'Kanban Board',\r\n        columns: [...this.columns],\r\n        cards: [...this.cards],\r\n        lastModified: new Date(),\r\n        version: 1\r\n      };\r\n    }\r\n\r\n    const newColumn: KanbanColumn = {\r\n      id: this.generateColumnId(),\r\n      title: `Column ${this.boardState.columns.length + 1}`,\r\n      position: this.boardState.columns.length,\r\n      color: this.getRandomColumnColor()\r\n    };\r\n\r\n    // Update boardState\r\n    this.boardState = {\r\n      ...this.boardState,\r\n      columns: [...this.boardState.columns, newColumn],\r\n      lastModified: new Date(),\r\n      version: this.boardState.version + 1\r\n    };\r\n\r\n    // Also update input properties to keep them in sync\r\n    this.columns = [...this.boardState.columns];\r\n\r\n    // Force change detection for immediate UI update\r\n    this.cdr.detectChanges();\r\n\r\n    // Try to update via service if available\r\n    try {\r\n      if (this.boardId) {\r\n        this.kanbanService.updateBoardState(this.boardId, { columns: this.boardState.columns });\r\n      }\r\n    } catch (error) {\r\n      // Service not available, that's fine for Storybook\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  // Public methods (matching the interface from design document)\r\n  addCard(columnId: string, card: Partial<KanbanCard>): void {\r\n    const cardRequest: CreateKanbanCardRequest = {\r\n      title: card.title || 'New Card',\r\n      description: card.description,\r\n      columnId,\r\n      assignees: card.assignees,\r\n      tags: card.tags,\r\n      priority: card.priority,\r\n      dueDate: card.dueDate,\r\n      metadata: card.metadata\r\n    };\r\n\r\n    this.onCardAdded(cardRequest);\r\n  }\r\n\r\n  updateCard(cardId: string, updates: Partial<KanbanCard>): void {\r\n    const updateRequest: UpdateKanbanCardRequest = {\r\n      title: updates.title,\r\n      description: updates.description,\r\n      assignees: updates.assignees,\r\n      tags: updates.tags,\r\n      priority: updates.priority,\r\n      dueDate: updates.dueDate,\r\n      metadata: updates.metadata\r\n    };\r\n\r\n    this.onCardUpdated({ cardId, updates: updateRequest });\r\n  }\r\n\r\n  deleteCard(cardId: string): void {\r\n    this.onCardDeleted(cardId);\r\n  }\r\n\r\n  moveCard(cardId: string, targetColumnId: string, position: number): void {\r\n    // Try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.moveCard(this.boardId, cardId, targetColumnId, position)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: () => {\r\n            // Emit move event only if we didn't handle it locally already\r\n            if (!this.boardState) {\r\n              const card = this.findCard(cardId);\r\n              if (card) {\r\n                const moveEvent: CardMoveEvent = {\r\n                  cardId,\r\n                  sourceColumnId: card.columnId,\r\n                  targetColumnId,\r\n                  sourcePosition: card.position,\r\n                  targetPosition: position,\r\n                  card: { ...card, columnId: targetColumnId, position }\r\n                };\r\n                this.cardMoved.emit(moveEvent);\r\n              }\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to move card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, drag-drop handled locally');\r\n    }\r\n  }\r\n\r\n  // Utility methods\r\n  getCardsForColumn(columnId: string): KanbanCard[] {\r\n    const cards = this.boardState?.cards || [];\r\n    return cards\r\n      .filter(card => card.columnId === columnId)\r\n      .sort((a, b) => a.position - b.position);\r\n  }\r\n\r\n  getConnectedDropLists(): string[] {\r\n    const columns = this.boardState?.columns || [];\r\n    return columns.map(col => `column-${col.id}`);\r\n  }\r\n\r\n  getTotalCardCount(): number {\r\n    const cards = this.boardState?.cards || [];\r\n    return cards.length;\r\n  }\r\n\r\n  getConnectionStatusText(): string {\r\n    switch (this.connectionStatus) {\r\n      case 'connected': return 'Connected';\r\n      case 'connecting': return 'Connecting...';\r\n      case 'disconnected': return 'Disconnected';\r\n      case 'reconnecting': return 'Reconnecting...';\r\n      case 'error': return 'Connection Error';\r\n      default: return 'Unknown';\r\n    }\r\n  }\r\n\r\n  getBoardStyles(): { [key: string]: string } {\r\n    const styles: { [key: string]: string } = {};\r\n\r\n    if (this.theme.backgroundColor) {\r\n      styles['--board-bg-color'] = this.theme.backgroundColor;\r\n    }\r\n    if (this.theme.primaryColor) {\r\n      styles['--primary-color'] = this.theme.primaryColor;\r\n    }\r\n    if (this.theme.textColor) {\r\n      styles['--text-color'] = this.theme.textColor;\r\n    }\r\n\r\n    return styles;\r\n  }\r\n\r\n  trackByColumnId(_index: number, column: KanbanColumn): string {\r\n    return column.id;\r\n  }\r\n\r\n  retryConnection(): void {\r\n    this.error = null;\r\n    this.initializeBoard();\r\n  }\r\n\r\n  private findCard(cardId: string): KanbanCard | undefined {\r\n    const cards = this.boardState?.cards || [];\r\n    return cards.find(card => card.id === cardId);\r\n  }\r\n\r\n  private generateColumnId(): string {\r\n    return `col_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;\r\n  }\r\n\r\n  private getRandomColumnColor(): string {\r\n    const colors = ['#0366d6', '#28a745', '#ffd33d', '#f66a0a', '#6f42c1', '#d73a49'];\r\n    return colors[Math.floor(Math.random() * colors.length)];\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  OnInit,\r\n  OnDestroy,\r\n  ChangeDetectorRef,\r\n  inject\r\n} from '@angular/core';\r\nimport { CdkDragDrop, CdkDropListGroup } from '@angular/cdk/drag-drop';\r\nimport { Subject, takeUntil } from 'rxjs';\r\n\r\nimport {\r\n  KanbanCard,\r\n  KanbanColumn,\r\n  KanbanBoardState,\r\n  KanbanBoardConfig,\r\n  KanbanTheme,\r\n  CreateKanbanCardRequest,\r\n  UpdateKanbanCardRequest\r\n} from '../../models';\r\nimport {\r\n  CardMoveEvent,\r\n  ConnectionStatus\r\n} from '../../types';\r\nimport { KanbanService } from '../../services';\r\nimport { KanbanColumnComponent } from '../kanban-column/kanban-column.component';\r\n\r\n@Component({\r\n  selector: 'app-kanban-board',\r\n  standalone: true,\r\n  imports: [\r\n    CdkDropListGroup,\r\n    KanbanColumnComponent\r\n  ],\r\n  templateUrl: './kanban-board.component.html',\r\n  styleUrls: ['./kanban-board.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class KanbanBoardComponent implements OnInit, OnDestroy {\r\n  @Input() boardId!: string;\r\n  @Input() columns: KanbanColumn[] = [];\r\n  @Input() cards: KanbanCard[] = [];\r\n  @Input() config: KanbanBoardConfig = {};\r\n  @Input() theme: KanbanTheme = {};\r\n\r\n  @Output() cardMoved = new EventEmitter<CardMoveEvent>();\r\n  @Output() cardCreated = new EventEmitter<KanbanCard>();\r\n  @Output() cardUpdated = new EventEmitter<KanbanCard>();\r\n  @Output() cardDeleted = new EventEmitter<string>();\r\n  @Output() connectionStatusChanged = new EventEmitter<ConnectionStatus>();\r\n\r\n  private destroy$ = new Subject<void>();\r\n  private kanbanService = inject(KanbanService);\r\n  private cdr = inject(ChangeDetectorRef);\r\n\r\n  boardState: KanbanBoardState | null = null;\r\n  connectionStatus: ConnectionStatus = 'disconnected';\r\n  selectedCardId: string | null = null;\r\n  isLoading = false;\r\n  error: string | null = null;\r\n\r\n  ngOnInit(): void {\r\n    // Always initialize from inputs first (for Storybook compatibility)\r\n    this.initializeFromInputs();\r\n\r\n    // If we have a boardId, also try to initialize the service\r\n    if (this.boardId) {\r\n      this.initializeBoard();\r\n    }\r\n  }\r\n\r\n  private initializeFromInputs(): void {\r\n    // Initialize directly from input properties (for Storybook)\r\n    this.boardState = {\r\n      id: this.boardId || 'storybook-board',\r\n      title: 'Kanban Board',\r\n      columns: [...(this.columns || [])],\r\n      cards: [...(this.cards || [])],\r\n      lastModified: new Date(),\r\n      version: 1\r\n    };\r\n    this.isLoading = false;\r\n    this.connectionStatus = 'disconnected';\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.destroy$.next();\r\n    this.destroy$.complete();\r\n    this.kanbanService.disconnectFromBoard();\r\n  }\r\n\r\n  private initializeBoard(): void {\r\n    this.isLoading = true;\r\n    this.error = null;\r\n\r\n    try {\r\n      // Subscribe to board state changes\r\n      this.kanbanService.getBoardState(this.boardId)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: (state) => {\r\n            // Merge service state with input data\r\n            this.boardState = {\r\n              ...state,\r\n              columns: state.columns.length > 0 ? state.columns : this.columns,\r\n              cards: state.cards.length > 0 ? state.cards : this.cards\r\n            };\r\n            this.isLoading = false;\r\n            this.cdr.markForCheck();\r\n          },\r\n          error: (error) => {\r\n            // Fallback to input properties for Storybook\r\n            console.warn('KanbanService not available, using input properties:', error);\r\n            this.isLoading = false;\r\n            this.cdr.markForCheck();\r\n          }\r\n        });\r\n\r\n      // Subscribe to connection status\r\n      this.kanbanService.getConnectionStatus()\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe(status => {\r\n          this.connectionStatus = status;\r\n          this.connectionStatusChanged.emit(status);\r\n          this.cdr.markForCheck();\r\n        });\r\n\r\n      // Connect to board for real-time updates\r\n      if (this.config.enableRealTimeSync !== false) {\r\n        this.kanbanService.connectToBoard(this.boardId)\r\n          .pipe(takeUntil(this.destroy$))\r\n          .subscribe();\r\n      }\r\n\r\n      // Initialize with provided data if available\r\n      if (this.columns.length > 0 || this.cards.length > 0) {\r\n        this.initializeBoardWithData();\r\n      }\r\n    } catch (error) {\r\n      // Fallback for Storybook when services aren't available\r\n      console.warn('KanbanService not available, keeping input properties');\r\n      this.isLoading = false;\r\n      this.cdr.markForCheck();\r\n    }\r\n  }\r\n\r\n  private initializeBoardWithData(): void {\r\n    if (!this.boardState) return;\r\n\r\n    const updatedState: Partial<KanbanBoardState> = {};\r\n\r\n    if (this.columns.length > 0) {\r\n      updatedState.columns = this.columns;\r\n    }\r\n\r\n    if (this.cards.length > 0) {\r\n      updatedState.cards = this.cards;\r\n    }\r\n\r\n    if (Object.keys(updatedState).length > 0) {\r\n      this.kanbanService.updateBoardState(this.boardId, updatedState);\r\n    }\r\n  }\r\n\r\n  // Card operations\r\n  onCardDropped(event: CdkDragDrop<KanbanCard[]>): void {\r\n    const card = event.item.data as KanbanCard;\r\n    const targetColumnId = event.container.id.replace('column-', '');\r\n    const targetPosition = event.currentIndex;\r\n\r\n    // Handle drag-drop locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedCards = [...this.boardState.cards];\r\n      const cardIndex = updatedCards.findIndex(c => c.id === card.id);\r\n\r\n      if (cardIndex !== -1) {\r\n        // Update card's column and position\r\n        updatedCards[cardIndex] = {\r\n          ...updatedCards[cardIndex],\r\n          columnId: targetColumnId,\r\n          position: targetPosition,\r\n          updatedAt: new Date()\r\n        };\r\n\r\n        // Update positions of other cards in the target column\r\n        const targetColumnCards = updatedCards\r\n          .filter(c => c.columnId === targetColumnId && c.id !== card.id)\r\n          .sort((a, b) => a.position - b.position);\r\n\r\n        targetColumnCards.forEach((c, index) => {\r\n          const newPosition = index >= targetPosition ? index + 1 : index;\r\n          const cardIdx = updatedCards.findIndex(uc => uc.id === c.id);\r\n          if (cardIdx !== -1) {\r\n            updatedCards[cardIdx] = { ...updatedCards[cardIdx], position: newPosition };\r\n          }\r\n        });\r\n\r\n        // Update board state\r\n        this.boardState = {\r\n          ...this.boardState,\r\n          cards: updatedCards,\r\n          lastModified: new Date(),\r\n          version: this.boardState.version + 1\r\n        };\r\n\r\n        this.cdr.markForCheck();\r\n\r\n        // Emit move event\r\n        const moveEvent: CardMoveEvent = {\r\n          cardId: card.id,\r\n          sourceColumnId: card.columnId,\r\n          targetColumnId,\r\n          sourcePosition: card.position,\r\n          targetPosition: targetPosition,\r\n          card: updatedCards[cardIndex]\r\n        };\r\n        this.cardMoved.emit(moveEvent);\r\n      }\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    if (event.previousContainer === event.container) {\r\n      // Reordering within same column\r\n      this.moveCard(card.id, targetColumnId, targetPosition);\r\n    } else {\r\n      // Moving between columns\r\n      this.moveCard(card.id, targetColumnId, targetPosition);\r\n    }\r\n  }\r\n\r\n  onCardAdded(cardRequest: CreateKanbanCardRequest): void {\r\n    // Handle card creation locally for Storybook\r\n    if (this.boardState) {\r\n      const newCard: KanbanCard = {\r\n        id: `card_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`,\r\n        title: cardRequest.title,\r\n        description: cardRequest.description,\r\n        columnId: cardRequest.columnId,\r\n        position: this.getCardsForColumn(cardRequest.columnId).length,\r\n        createdAt: new Date(),\r\n        updatedAt: new Date(),\r\n        createdBy: 'storybook-user',\r\n        assignees: cardRequest.assignees,\r\n        tags: cardRequest.tags,\r\n        priority: cardRequest.priority,\r\n        dueDate: cardRequest.dueDate,\r\n        metadata: cardRequest.metadata\r\n      };\r\n\r\n      // Update board state\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        cards: [...this.boardState.cards, newCard],\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      this.cdr.markForCheck();\r\n      this.cardCreated.emit(newCard);\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.createCard(this.boardId, cardRequest.columnId, cardRequest)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: (card) => {\r\n            // Only emit if we didn't handle it locally\r\n            if (!this.boardState) {\r\n              this.cardCreated.emit(card);\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to create card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  onCardUpdated(event: { cardId: string; updates: UpdateKanbanCardRequest }): void {\r\n    // Handle card updates locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedCards = this.boardState.cards.map(card => {\r\n        if (card.id === event.cardId) {\r\n          return {\r\n            ...card,\r\n            ...event.updates,\r\n            updatedAt: new Date()\r\n          };\r\n        }\r\n        return card;\r\n      });\r\n\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        cards: updatedCards,\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      this.cdr.markForCheck();\r\n\r\n      const updatedCard = updatedCards.find(c => c.id === event.cardId);\r\n      if (updatedCard) {\r\n        this.cardUpdated.emit(updatedCard);\r\n      }\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.updateCard(this.boardId, event.cardId, event.updates)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: (card) => {\r\n            // Only emit if we didn't handle it locally\r\n            if (!this.boardState) {\r\n              this.cardUpdated.emit(card);\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to update card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  onCardDeleted(cardId: string): void {\r\n    // Handle card deletion locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedCards = this.boardState.cards.filter(card => card.id !== cardId);\r\n\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        cards: updatedCards,\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      this.cdr.markForCheck();\r\n      this.cardDeleted.emit(cardId);\r\n\r\n      if (this.selectedCardId === cardId) {\r\n        this.selectedCardId = null;\r\n      }\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.deleteCard(this.boardId, cardId)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: () => {\r\n            // Only emit if we didn't handle it locally\r\n            if (!this.boardState) {\r\n              this.cardDeleted.emit(cardId);\r\n              if (this.selectedCardId === cardId) {\r\n                this.selectedCardId = null;\r\n              }\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to delete card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  onCardSelected(cardId: string): void {\r\n    this.selectedCardId = this.selectedCardId === cardId ? null : cardId;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  // Column operations\r\n  onColumnUpdated(event: { columnId: string; updates: Partial<KanbanColumn> }): void {\r\n    // Handle column updates locally for Storybook\r\n    if (this.boardState) {\r\n      const updatedColumns = this.boardState.columns.map(col =>\r\n        col.id === event.columnId ? { ...col, ...event.updates } : col\r\n      );\r\n\r\n      this.boardState = {\r\n        ...this.boardState,\r\n        columns: updatedColumns,\r\n        lastModified: new Date(),\r\n        version: this.boardState.version + 1\r\n      };\r\n\r\n      // Also update input properties to keep them in sync\r\n      this.columns = [...updatedColumns];\r\n      this.cdr.markForCheck();\r\n    }\r\n\r\n    // Also try to use service if available (for real applications)\r\n    try {\r\n      if (this.boardId) {\r\n        this.kanbanService.updateBoardState(this.boardId, { columns: this.boardState?.columns || this.columns });\r\n      }\r\n    } catch (error) {\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  addColumn(): void {\r\n    if (!this.boardState) {\r\n      // Initialize boardState if it doesn't exist\r\n      this.boardState = {\r\n        id: this.boardId || 'storybook-board',\r\n        title: 'Kanban Board',\r\n        columns: [...this.columns],\r\n        cards: [...this.cards],\r\n        lastModified: new Date(),\r\n        version: 1\r\n      };\r\n    }\r\n\r\n    const newColumn: KanbanColumn = {\r\n      id: this.generateColumnId(),\r\n      title: `Column ${this.boardState.columns.length + 1}`,\r\n      position: this.boardState.columns.length,\r\n      color: this.getRandomColumnColor()\r\n    };\r\n\r\n    // Update boardState\r\n    this.boardState = {\r\n      ...this.boardState,\r\n      columns: [...this.boardState.columns, newColumn],\r\n      lastModified: new Date(),\r\n      version: this.boardState.version + 1\r\n    };\r\n\r\n    // Also update input properties to keep them in sync\r\n    this.columns = [...this.boardState.columns];\r\n\r\n    // Force change detection for immediate UI update\r\n    this.cdr.detectChanges();\r\n\r\n    // Try to update via service if available\r\n    try {\r\n      if (this.boardId) {\r\n        this.kanbanService.updateBoardState(this.boardId, { columns: this.boardState.columns });\r\n      }\r\n    } catch (error) {\r\n      // Service not available, that's fine for Storybook\r\n      console.log('Service not available, using local state only');\r\n    }\r\n  }\r\n\r\n  // Public methods (matching the interface from design document)\r\n  addCard(columnId: string, card: Partial<KanbanCard>): void {\r\n    const cardRequest: CreateKanbanCardRequest = {\r\n      title: card.title || 'New Card',\r\n      description: card.description,\r\n      columnId,\r\n      assignees: card.assignees,\r\n      tags: card.tags,\r\n      priority: card.priority,\r\n      dueDate: card.dueDate,\r\n      metadata: card.metadata\r\n    };\r\n\r\n    this.onCardAdded(cardRequest);\r\n  }\r\n\r\n  updateCard(cardId: string, updates: Partial<KanbanCard>): void {\r\n    const updateRequest: UpdateKanbanCardRequest = {\r\n      title: updates.title,\r\n      description: updates.description,\r\n      assignees: updates.assignees,\r\n      tags: updates.tags,\r\n      priority: updates.priority,\r\n      dueDate: updates.dueDate,\r\n      metadata: updates.metadata\r\n    };\r\n\r\n    this.onCardUpdated({ cardId, updates: updateRequest });\r\n  }\r\n\r\n  deleteCard(cardId: string): void {\r\n    this.onCardDeleted(cardId);\r\n  }\r\n\r\n  moveCard(cardId: string, targetColumnId: string, position: number): void {\r\n    // Try to use service if available (for real applications)\r\n    try {\r\n      this.kanbanService.moveCard(this.boardId, cardId, targetColumnId, position)\r\n        .pipe(takeUntil(this.destroy$))\r\n        .subscribe({\r\n          next: () => {\r\n            // Emit move event only if we didn't handle it locally already\r\n            if (!this.boardState) {\r\n              const card = this.findCard(cardId);\r\n              if (card) {\r\n                const moveEvent: CardMoveEvent = {\r\n                  cardId,\r\n                  sourceColumnId: card.columnId,\r\n                  targetColumnId,\r\n                  sourcePosition: card.position,\r\n                  targetPosition: position,\r\n                  card: { ...card, columnId: targetColumnId, position }\r\n                };\r\n                this.cardMoved.emit(moveEvent);\r\n              }\r\n            }\r\n          },\r\n          error: (error) => {\r\n            console.error('Failed to move card via service:', error);\r\n          }\r\n        });\r\n    } catch (error) {\r\n      console.log('Service not available, drag-drop handled locally');\r\n    }\r\n  }\r\n\r\n  // Utility methods\r\n  getCardsForColumn(columnId: string): KanbanCard[] {\r\n    const cards = this.boardState?.cards || [];\r\n    return cards\r\n      .filter(card => card.columnId === columnId)\r\n      .sort((a, b) => a.position - b.position);\r\n  }\r\n\r\n  getConnectedDropLists(): string[] {\r\n    const columns = this.boardState?.columns || [];\r\n    return columns.map(col => `column-${col.id}`);\r\n  }\r\n\r\n  getTotalCardCount(): number {\r\n    const cards = this.boardState?.cards || [];\r\n    return cards.length;\r\n  }\r\n\r\n  getConnectionStatusText(): string {\r\n    switch (this.connectionStatus) {\r\n      case 'connected': return 'Connected';\r\n      case 'connecting': return 'Connecting...';\r\n      case 'disconnected': return 'Disconnected';\r\n      case 'reconnecting': return 'Reconnecting...';\r\n      case 'error': return 'Connection Error';\r\n      default: return 'Unknown';\r\n    }\r\n  }\r\n\r\n  getBoardStyles(): { [key: string]: string } {\r\n    const styles: { [key: string]: string } = {};\r\n\r\n    if (this.theme.backgroundColor) {\r\n      styles['--board-bg-color'] = this.theme.backgroundColor;\r\n    }\r\n    if (this.theme.primaryColor) {\r\n      styles['--primary-color'] = this.theme.primaryColor;\r\n    }\r\n    if (this.theme.textColor) {\r\n      styles['--text-color'] = this.theme.textColor;\r\n    }\r\n\r\n    return styles;\r\n  }\r\n\r\n  trackByColumnId(_index: number, column: KanbanColumn): string {\r\n    return column.id;\r\n  }\r\n\r\n  retryConnection(): void {\r\n    this.error = null;\r\n    this.initializeBoard();\r\n  }\r\n\r\n  private findCard(cardId: string): KanbanCard | undefined {\r\n    const cards = this.boardState?.cards || [];\r\n    return cards.find(card => card.id === cardId);\r\n  }\r\n\r\n  private generateColumnId(): string {\r\n    return `col_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;\r\n  }\r\n\r\n  private getRandomColumnColor(): string {\r\n    const colors = ['#0366d6', '#28a745', '#ffd33d', '#f66a0a', '#6f42c1', '#d73a49'];\r\n    return colors[Math.floor(Math.random() * colors.length)];\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -5849,11 +5846,12 @@
             "implements": [
                 "OnInit",
                 "OnDestroy"
-            ]
+            ],
+            "templateData": "<div class=\"kanban-board\" [class.theme-applied]=\"theme\" [style]=\"getBoardStyles()\">\r\n  <!-- Board Header -->\r\n  <div class=\"board-header\">\r\n    <div class=\"board-title-section\">\r\n      <h1 class=\"board-title\">{{ boardState?.title || 'Kanban Board' }}</h1>\r\n      <div class=\"board-info\">\r\n        <span class=\"total-cards\">{{ getTotalCardCount() }} cards</span>\r\n        <div class=\"connection-status\" [class]=\"'status-' + connectionStatus\">\r\n          <span class=\"status-indicator\"></span>\r\n          {{ getConnectionStatusText() }}\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"board-actions\">\r\n      <button\r\n        class=\"add-column-btn\"\r\n        (click)=\"addColumn()\"\r\n        [disabled]=\"config.allowColumnReordering === false\"\r\n        [title]=\"config.allowColumnReordering === false ? 'Column reordering disabled' : 'Add new column'\"\r\n      >\r\n        + Add Column\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- Board Content -->\r\n  <div class=\"board-content\" cdkDropListGroup>\r\n    <!-- Columns -->\r\n    @if (boardState && boardState.columns.length > 0) {\r\n      <div class=\"columns-container\">\r\n        @for (column of boardState.columns; track column.id) {\r\n          <app-kanban-column\r\n            [column]=\"column\"\r\n            [cards]=\"getCardsForColumn(column.id)\"\r\n            [allowDrop]=\"config.allowCardCreation !== false\"\r\n            [allowDrag]=\"config.allowCardCreation !== false\"\r\n            [editable]=\"config.allowCardEditing !== false\"\r\n            [connectedDropLists]=\"getConnectedDropLists()\"\r\n            [selectedCardId]=\"selectedCardId\"\r\n            (cardDropped)=\"onCardDropped($event)\"\r\n            (cardAdded)=\"onCardAdded($event)\"\r\n            (cardUpdated)=\"onCardUpdated($event)\"\r\n            (cardDeleted)=\"onCardDeleted($event)\"\r\n            (cardSelected)=\"onCardSelected($event)\"\r\n            (columnUpdated)=\"onColumnUpdated($event)\"\r\n          ></app-kanban-column>\r\n        }\r\n      </div>\r\n    }\r\n\r\n    <!-- Empty Board State -->\r\n    @if (!boardState || boardState.columns.length === 0) {\r\n      <div class=\"empty-board\">\r\n        <div class=\"empty-content\">\r\n          <h2>Welcome to your Kanban Board</h2>\r\n          <p>Get started by adding your first column</p>\r\n          <button class=\"create-first-column-btn\" (click)=\"addColumn()\">\r\n            Create First Column\r\n          </button>\r\n        </div>\r\n      </div>\r\n    }\r\n\r\n    <!-- Loading State -->\r\n    @if (isLoading) {\r\n      <div class=\"loading-state\">\r\n        <div class=\"loading-spinner\"></div>\r\n        <p>Loading board...</p>\r\n      </div>\r\n    }\r\n  </div>\r\n\r\n  <!-- Error State -->\r\n  @if (error) {\r\n    <div class=\"error-state\">\r\n      <div class=\"error-content\">\r\n        <h3>Something went wrong</h3>\r\n        <p>{{ error }}</p>\r\n        <button class=\"retry-btn\" (click)=\"retryConnection()\">\r\n          Try Again\r\n        </button>\r\n      </div>\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "KanbanCardComponent",
-            "id": "component-KanbanCardComponent-ec2ce2533d29354e165436ce04d57e1091826bba2fd29f33a33e25e30acb3bdd53336fda0eb1260874ca163b04b521d856109b45b4f6f09d455ed1df5214be5d",
+            "id": "component-KanbanCardComponent-1f95d5dec14e06daf9cf99d741389db7f06ab8ccea22ff418c7c630082cfa8503ac987a8f044cacdcde389747d0be9cf79a29105195ea0ef98aba8000834d8b4",
             "file": "src/app/kanban/components/kanban-card/kanban-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -5866,8 +5864,9 @@
                 "./kanban-card.component.scss"
             ],
             "styles": [],
-            "template": "<div\n  class=\"kanban-card\"\n  [class.selected]=\"isSelected\"\n  [class.editing]=\"isEditing\"\n  [class.dragging]=\"isDragging\"\n  (click)=\"onCardClick()\"\n  (dblclick)=\"startEditing()\"\n>\n  <!-- Card Header -->\n  <div class=\"card-header\">\n    <div class=\"card-title-section\">\n      <input\n        #titleInput\n        *ngIf=\"isEditing; else titleDisplay\"\n        [(ngModel)]=\"editableCard.title\"\n        class=\"title-input\"\n        (keydown.enter)=\"saveChanges()\"\n        (keydown.escape)=\"cancelEditing()\"\n        maxlength=\"100\"\n      />\n      <ng-template #titleDisplay>\n        <h3 class=\"card-title\">{{ card.title }}</h3>\n      </ng-template>\n    </div>\n\n    <div class=\"card-actions\" *ngIf=\"editable\">\n      <button\n        class=\"edit-btn\"\n        (click)=\"startEditing(); $event.stopPropagation()\"\n        [disabled]=\"isEditing\"\n        title=\"Edit card\"\n      >\n        ✏️\n      </button>\n      <button\n        class=\"delete-btn\"\n        (click)=\"onDelete(); $event.stopPropagation()\"\n        title=\"Delete card\"\n      >\n        🗑️\n      </button>\n    </div>\n  </div>\n\n  <!-- Card Description -->\n  <div class=\"card-description\" *ngIf=\"card.description || isEditing\">\n    <textarea\n      *ngIf=\"isEditing; else descriptionDisplay\"\n      [(ngModel)]=\"editableCard.description\"\n      class=\"description-input\"\n      placeholder=\"Add a description...\"\n      (keydown.escape)=\"cancelEditing()\"\n      (keydown.enter)=\"saveChanges()\"\n      rows=\"3\"\n      maxlength=\"500\"\n    ></textarea>\n    <ng-template #descriptionDisplay>\n      <p class=\"description-text\">{{ card.description }}</p>\n    </ng-template>\n  </div>\n\n  <!-- Edit Actions -->\n  <div class=\"edit-actions\" *ngIf=\"isEditing\">\n    <button class=\"save-btn\" (click)=\"saveChanges()\">Save</button>\n    <button class=\"cancel-btn\" (click)=\"cancelEditing()\">Cancel</button>\n  </div>\n\n  <!-- Card Metadata -->\n  <div class=\"card-metadata\" *ngIf=\"hasMetadata()\">\n    <!-- Priority -->\n    <div class=\"priority-badge\" *ngIf=\"card.priority\" [class]=\"'priority-' + card.priority\">\n      {{ card.priority.toUpperCase() }}\n    </div>\n\n    <!-- Tags -->\n    <div class=\"tags\" *ngIf=\"card.tags && card.tags.length > 0\">\n      <span class=\"tag\" *ngFor=\"let tag of card.tags\">{{ tag }}</span>\n    </div>\n\n    <!-- Due Date -->\n    <div class=\"due-date\" *ngIf=\"card.dueDate\" [class.overdue]=\"isOverdue()\">\n      📅 {{ formatDate(card.dueDate) }}\n    </div>\n\n    <!-- Assignees -->\n    <div class=\"assignees\" *ngIf=\"card.assignees && card.assignees.length > 0\">\n      <span class=\"assignee\" *ngFor=\"let assignee of card.assignees\">\n        {{ getInitials(assignee) }}\n      </span>\n    </div>\n  </div>\n\n  <!-- Card Footer -->\n  <div class=\"card-footer\">\n    <div class=\"card-timestamps\">\n      <small class=\"created-date\">Created: {{ formatDate(card.createdAt) }}</small>\n      <small class=\"updated-date\" *ngIf=\"card.updatedAt !== card.createdAt\">\n        Updated: {{ formatDate(card.updatedAt) }}\n      </small>\n    </div>\n  </div>\n</div>\n",
-            "templateUrl": [],
+            "templateUrl": [
+                "./kanban-card.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
@@ -5875,7 +5874,7 @@
                     "name": "card",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 128,
+                    "line": 24,
                     "type": "KanbanCard",
                     "decorators": []
                 },
@@ -5884,7 +5883,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 129,
+                    "line": 25,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -5893,7 +5892,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 131,
+                    "line": 27,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -5902,7 +5901,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 130,
+                    "line": 26,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -5913,7 +5912,7 @@
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 134,
+                    "line": 30,
                     "type": "EventEmitter"
                 },
                 {
@@ -5921,7 +5920,7 @@
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 136,
+                    "line": 32,
                     "type": "EventEmitter"
                 },
                 {
@@ -5929,7 +5928,7 @@
                     "defaultValue": "new EventEmitter<UpdateKanbanCardRequest>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 133,
+                    "line": 29,
                     "type": "EventEmitter"
                 },
                 {
@@ -5937,7 +5936,7 @@
                     "defaultValue": "new EventEmitter<boolean>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 135,
+                    "line": 31,
                     "type": "EventEmitter"
                 }
             ],
@@ -5951,7 +5950,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 141
+                    "line": 37
                 },
                 {
                     "name": "isEditing",
@@ -5962,7 +5961,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 140
+                    "line": 36
                 },
                 {
                     "name": "titleInput",
@@ -5972,7 +5971,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "",
-                    "line": 138,
+                    "line": 34,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -5991,7 +5990,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 197,
+                    "line": 93,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6008,7 +6007,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 223,
+                    "line": 119,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -6036,7 +6035,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 233,
+                    "line": 129,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -6057,7 +6056,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 209,
+                    "line": 105,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6067,7 +6066,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 218,
+                    "line": 114,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6077,7 +6076,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 147,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6087,7 +6086,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 143,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6097,7 +6096,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 151,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6107,7 +6106,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 203,
+                    "line": 99,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6117,7 +6116,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 241,
+                    "line": 137,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -6130,7 +6129,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 170,
+                    "line": 66,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6140,7 +6139,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 157,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -6152,10 +6151,6 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
                     "name": "FormsModule",
                     "type": "module"
                 }
@@ -6163,7 +6158,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  OnInit,\r\n  OnDestroy,\r\n  ViewChild,\r\n  ElementRef\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { KanbanCard, UpdateKanbanCardRequest } from '../../models';\r\n\r\n@Component({\r\n  selector: 'app-kanban-card',\r\n  standalone: true,\r\n  imports: [CommonModule, FormsModule],\r\n  template: `\r\n    <div\r\n      class=\"kanban-card\"\r\n      [class.selected]=\"isSelected\"\r\n      [class.editing]=\"isEditing\"\r\n      [class.dragging]=\"isDragging\"\r\n      (click)=\"onCardClick()\"\r\n      (dblclick)=\"startEditing()\"\r\n    >\r\n      <!-- Card Header -->\r\n      <div class=\"card-header\">\r\n        <div class=\"card-title-section\">\r\n          <input\r\n            #titleInput\r\n            *ngIf=\"isEditing; else titleDisplay\"\r\n            [(ngModel)]=\"editableCard.title\"\r\n            class=\"title-input\"\r\n            (keydown.enter)=\"saveChanges()\"\r\n            (keydown.escape)=\"cancelEditing()\"\r\n            maxlength=\"100\"\r\n          />\r\n          <ng-template #titleDisplay>\r\n            <h3 class=\"card-title\">{{ card.title }}</h3>\r\n          </ng-template>\r\n        </div>\r\n\r\n        <div class=\"card-actions\" *ngIf=\"editable\">\r\n          <button\r\n            class=\"edit-btn\"\r\n            (click)=\"startEditing(); $event.stopPropagation()\"\r\n            [disabled]=\"isEditing\"\r\n            title=\"Edit card\"\r\n          >\r\n            ✏️\r\n          </button>\r\n          <button\r\n            class=\"delete-btn\"\r\n            (click)=\"onDelete(); $event.stopPropagation()\"\r\n            title=\"Delete card\"\r\n          >\r\n            🗑️\r\n          </button>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Card Description -->\r\n      <div class=\"card-description\" *ngIf=\"card.description || isEditing\">\r\n        <textarea\r\n          *ngIf=\"isEditing; else descriptionDisplay\"\r\n          [(ngModel)]=\"editableCard.description\"\r\n          class=\"description-input\"\r\n          placeholder=\"Add a description...\"\r\n          (keydown.escape)=\"cancelEditing()\"\r\n          (keydown.enter)=\"saveChanges()\"\r\n          rows=\"3\"\r\n          maxlength=\"500\"\r\n        ></textarea>\r\n        <ng-template #descriptionDisplay>\r\n          <p class=\"description-text\">{{ card.description }}</p>\r\n        </ng-template>\r\n      </div>\r\n\r\n      <!-- Edit Actions -->\r\n      <div class=\"edit-actions\" *ngIf=\"isEditing\">\r\n        <button class=\"save-btn\" (click)=\"saveChanges()\">Save</button>\r\n        <button class=\"cancel-btn\" (click)=\"cancelEditing()\">Cancel</button>\r\n      </div>\r\n\r\n      <!-- Card Metadata -->\r\n      <div class=\"card-metadata\" *ngIf=\"hasMetadata()\">\r\n        <!-- Priority -->\r\n        <div class=\"priority-badge\" *ngIf=\"card.priority\" [class]=\"'priority-' + card.priority\">\r\n          {{ card.priority.toUpperCase() }}\r\n        </div>\r\n\r\n        <!-- Tags -->\r\n        <div class=\"tags\" *ngIf=\"card.tags && card.tags.length > 0\">\r\n          <span class=\"tag\" *ngFor=\"let tag of card.tags\">{{ tag }}</span>\r\n        </div>\r\n\r\n        <!-- Due Date -->\r\n        <div class=\"due-date\" *ngIf=\"card.dueDate\" [class.overdue]=\"isOverdue()\">\r\n          📅 {{ formatDate(card.dueDate) }}\r\n        </div>\r\n\r\n        <!-- Assignees -->\r\n        <div class=\"assignees\" *ngIf=\"card.assignees && card.assignees.length > 0\">\r\n          <span class=\"assignee\" *ngFor=\"let assignee of card.assignees\">\r\n            {{ getInitials(assignee) }}\r\n          </span>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Card Footer -->\r\n      <div class=\"card-footer\">\r\n        <div class=\"card-timestamps\">\r\n          <small class=\"created-date\">Created: {{ formatDate(card.createdAt) }}</small>\r\n          <small class=\"updated-date\" *ngIf=\"card.updatedAt !== card.createdAt\">\r\n            Updated: {{ formatDate(card.updatedAt) }}\r\n          </small>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  `,\r\n  styleUrls: ['./kanban-card.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class KanbanCardComponent implements OnInit, OnDestroy {\r\n  @Input() card!: KanbanCard;\r\n  @Input() editable = true;\r\n  @Input() isSelected = false;\r\n  @Input() isDragging = false;\r\n\r\n  @Output() cardUpdated = new EventEmitter<UpdateKanbanCardRequest>();\r\n  @Output() cardDeleted = new EventEmitter<string>();\r\n  @Output() editModeChanged = new EventEmitter<boolean>();\r\n  @Output() cardSelected = new EventEmitter<string>();\r\n\r\n  @ViewChild('titleInput') titleInput?: ElementRef<HTMLInputElement>;\r\n\r\n  isEditing = false;\r\n  editableCard: Partial<KanbanCard> = {};\r\n\r\n  ngOnInit(): void {\r\n    this.resetEditableCard();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    // Cleanup if needed\r\n  }\r\n\r\n  onCardClick(): void {\r\n    if (!this.isEditing) {\r\n      this.cardSelected.emit(this.card.id);\r\n    }\r\n  }\r\n\r\n  startEditing(): void {\r\n    if (!this.editable) return;\r\n\r\n    this.isEditing = true;\r\n    this.resetEditableCard();\r\n    this.editModeChanged.emit(true);\r\n\r\n    // Focus title input after view update\r\n    setTimeout(() => {\r\n      this.titleInput?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  saveChanges(): void {\r\n    if (!this.isEditing) return;\r\n\r\n    const changes: UpdateKanbanCardRequest = {};\r\n    let hasChanges = false;\r\n\r\n    // Check for title changes\r\n    if (this.editableCard.title !== this.card.title) {\r\n      if (this.editableCard.title?.trim()) {\r\n        changes.title = this.editableCard.title.trim();\r\n        hasChanges = true;\r\n      }\r\n    }\r\n\r\n    // Check for description changes\r\n    if (this.editableCard.description !== this.card.description) {\r\n      changes.description = this.editableCard.description?.trim() || undefined;\r\n      hasChanges = true;\r\n    }\r\n\r\n    if (hasChanges) {\r\n      this.cardUpdated.emit(changes);\r\n    }\r\n\r\n    this.cancelEditing();\r\n  }\r\n\r\n  cancelEditing(): void {\r\n    this.isEditing = false;\r\n    this.resetEditableCard();\r\n    this.editModeChanged.emit(false);\r\n  }\r\n\r\n  onDelete(): void {\r\n    if (confirm('Are you sure you want to delete this card?')) {\r\n      this.cardDeleted.emit(this.card.id);\r\n    }\r\n  }\r\n\r\n  hasMetadata(): boolean {\r\n    return !!(\r\n      this.card.priority ||\r\n      (this.card.tags && this.card.tags.length > 0) ||\r\n      this.card.dueDate ||\r\n      (this.card.assignees && this.card.assignees.length > 0)\r\n    );\r\n  }\r\n\r\n  isOverdue(): boolean {\r\n    if (!this.card.dueDate) return false;\r\n    return new Date(this.card.dueDate) < new Date();\r\n  }\r\n\r\n  formatDate(date: Date): string {\r\n    if (!date) return '';\r\n    const d = new Date(date);\r\n    return d.toLocaleDateString('en-US', {\r\n      month: 'short',\r\n      day: 'numeric',\r\n      year: d.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined\r\n    });\r\n  }\r\n\r\n  getInitials(name: string): string {\r\n    return name\r\n      .split(' ')\r\n      .map(part => part.charAt(0).toUpperCase())\r\n      .join('')\r\n      .substring(0, 2);\r\n  }\r\n\r\n  private resetEditableCard(): void {\r\n    this.editableCard = {\r\n      title: this.card.title,\r\n      description: this.card.description\r\n    };\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  OnInit,\r\n  OnDestroy,\r\n  ViewChild,\r\n  ElementRef\r\n} from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { KanbanCard, UpdateKanbanCardRequest } from '../../models';\r\n\r\n@Component({\r\n  selector: 'app-kanban-card',\r\n  standalone: true,\r\n  imports: [FormsModule],\r\n  templateUrl: './kanban-card.component.html',\r\n  styleUrls: ['./kanban-card.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class KanbanCardComponent implements OnInit, OnDestroy {\r\n  @Input() card!: KanbanCard;\r\n  @Input() editable = true;\r\n  @Input() isSelected = false;\r\n  @Input() isDragging = false;\r\n\r\n  @Output() cardUpdated = new EventEmitter<UpdateKanbanCardRequest>();\r\n  @Output() cardDeleted = new EventEmitter<string>();\r\n  @Output() editModeChanged = new EventEmitter<boolean>();\r\n  @Output() cardSelected = new EventEmitter<string>();\r\n\r\n  @ViewChild('titleInput') titleInput?: ElementRef<HTMLInputElement>;\r\n\r\n  isEditing = false;\r\n  editableCard: Partial<KanbanCard> = {};\r\n\r\n  ngOnInit(): void {\r\n    this.resetEditableCard();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    // Cleanup if needed\r\n  }\r\n\r\n  onCardClick(): void {\r\n    if (!this.isEditing) {\r\n      this.cardSelected.emit(this.card.id);\r\n    }\r\n  }\r\n\r\n  startEditing(): void {\r\n    if (!this.editable) return;\r\n\r\n    this.isEditing = true;\r\n    this.resetEditableCard();\r\n    this.editModeChanged.emit(true);\r\n\r\n    // Focus title input after view update\r\n    setTimeout(() => {\r\n      this.titleInput?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  saveChanges(): void {\r\n    if (!this.isEditing) return;\r\n\r\n    const changes: UpdateKanbanCardRequest = {};\r\n    let hasChanges = false;\r\n\r\n    // Check for title changes\r\n    if (this.editableCard.title !== this.card.title) {\r\n      if (this.editableCard.title?.trim()) {\r\n        changes.title = this.editableCard.title.trim();\r\n        hasChanges = true;\r\n      }\r\n    }\r\n\r\n    // Check for description changes\r\n    if (this.editableCard.description !== this.card.description) {\r\n      changes.description = this.editableCard.description?.trim() || undefined;\r\n      hasChanges = true;\r\n    }\r\n\r\n    if (hasChanges) {\r\n      this.cardUpdated.emit(changes);\r\n    }\r\n\r\n    this.cancelEditing();\r\n  }\r\n\r\n  cancelEditing(): void {\r\n    this.isEditing = false;\r\n    this.resetEditableCard();\r\n    this.editModeChanged.emit(false);\r\n  }\r\n\r\n  onDelete(): void {\r\n    if (confirm('Are you sure you want to delete this card?')) {\r\n      this.cardDeleted.emit(this.card.id);\r\n    }\r\n  }\r\n\r\n  hasMetadata(): boolean {\r\n    return !!(\r\n      this.card.priority ||\r\n      (this.card.tags && this.card.tags.length > 0) ||\r\n      this.card.dueDate ||\r\n      (this.card.assignees && this.card.assignees.length > 0)\r\n    );\r\n  }\r\n\r\n  isOverdue(): boolean {\r\n    if (!this.card.dueDate) return false;\r\n    return new Date(this.card.dueDate) < new Date();\r\n  }\r\n\r\n  formatDate(date: Date): string {\r\n    if (!date) return '';\r\n    const d = new Date(date);\r\n    return d.toLocaleDateString('en-US', {\r\n      month: 'short',\r\n      day: 'numeric',\r\n      year: d.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined\r\n    });\r\n  }\r\n\r\n  getInitials(name: string): string {\r\n    return name\r\n      .split(' ')\r\n      .map(part => part.charAt(0).toUpperCase())\r\n      .join('')\r\n      .substring(0, 2);\r\n  }\r\n\r\n  private resetEditableCard(): void {\r\n    this.editableCard = {\r\n      title: this.card.title,\r\n      description: this.card.description\r\n    };\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -6176,11 +6171,12 @@
             "implements": [
                 "OnInit",
                 "OnDestroy"
-            ]
+            ],
+            "templateData": "<div\r\n  class=\"kanban-card\"\r\n  [class.selected]=\"isSelected\"\r\n  [class.editing]=\"isEditing\"\r\n  [class.dragging]=\"isDragging\"\r\n  (click)=\"onCardClick()\"\r\n  (dblclick)=\"startEditing()\"\r\n>\r\n  <!-- Card Header -->\r\n  <div class=\"card-header\">\r\n    <div class=\"card-title-section\">\r\n      @if (isEditing) {\r\n        <input\r\n          #titleInput\r\n          [(ngModel)]=\"editableCard.title\"\r\n          class=\"title-input\"\r\n          (keydown.enter)=\"saveChanges()\"\r\n          (keydown.escape)=\"cancelEditing()\"\r\n          maxlength=\"100\"\r\n        />\r\n      } @else {\r\n        <h3 class=\"card-title\">{{ card.title }}</h3>\r\n      }\r\n    </div>\r\n\r\n    @if (editable) {\r\n      <div class=\"card-actions\">\r\n        <button\r\n          class=\"edit-btn\"\r\n          (click)=\"startEditing(); $event.stopPropagation()\"\r\n          [disabled]=\"isEditing\"\r\n          title=\"Edit card\"\r\n        >\r\n          ✏️\r\n        </button>\r\n        <button\r\n          class=\"delete-btn\"\r\n          (click)=\"onDelete(); $event.stopPropagation()\"\r\n          title=\"Delete card\"\r\n        >\r\n          🗑️\r\n        </button>\r\n      </div>\r\n    }\r\n  </div>\r\n\r\n  <!-- Card Description -->\r\n  @if (card.description || isEditing) {\r\n    <div class=\"card-description\">\r\n      @if (isEditing) {\r\n        <textarea\r\n          [(ngModel)]=\"editableCard.description\"\r\n          class=\"description-input\"\r\n          placeholder=\"Add a description...\"\r\n          (keydown.escape)=\"cancelEditing()\"\r\n          (keydown.enter)=\"saveChanges()\"\r\n          rows=\"3\"\r\n          maxlength=\"500\"\r\n        ></textarea>\r\n      } @else {\r\n        <p class=\"description-text\">{{ card.description }}</p>\r\n      }\r\n    </div>\r\n  }\r\n\r\n  <!-- Edit Actions -->\r\n  @if (isEditing) {\r\n    <div class=\"edit-actions\">\r\n      <button class=\"save-btn\" (click)=\"saveChanges()\">Save</button>\r\n      <button class=\"cancel-btn\" (click)=\"cancelEditing()\">Cancel</button>\r\n    </div>\r\n  }\r\n\r\n  <!-- Card Metadata -->\r\n  @if (hasMetadata()) {\r\n    <div class=\"card-metadata\">\r\n      <!-- Priority -->\r\n      @if (card.priority) {\r\n        <div class=\"priority-badge\" [class]=\"'priority-' + card.priority\">\r\n          {{ card.priority.toUpperCase() }}\r\n        </div>\r\n      }\r\n\r\n      <!-- Tags -->\r\n      @if (card.tags && card.tags.length > 0) {\r\n        <div class=\"tags\">\r\n          @for (tag of card.tags; track tag) {\r\n            <span class=\"tag\">{{ tag }}</span>\r\n          }\r\n        </div>\r\n      }\r\n\r\n      <!-- Due Date -->\r\n      @if (card.dueDate) {\r\n        <div class=\"due-date\" [class.overdue]=\"isOverdue()\">\r\n          📅 {{ formatDate(card.dueDate) }}\r\n        </div>\r\n      }\r\n\r\n      <!-- Assignees -->\r\n      @if (card.assignees && card.assignees.length > 0) {\r\n        <div class=\"assignees\">\r\n          @for (assignee of card.assignees; track assignee) {\r\n            <span class=\"assignee\">\r\n              {{ getInitials(assignee) }}\r\n            </span>\r\n          }\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n\r\n  <!-- Card Footer -->\r\n  <div class=\"card-footer\">\r\n    <div class=\"card-timestamps\">\r\n      <small class=\"created-date\">Created: {{ formatDate(card.createdAt) }}</small>\r\n      @if (card.updatedAt !== card.createdAt) {\r\n        <small class=\"updated-date\">\r\n          Updated: {{ formatDate(card.updatedAt) }}\r\n        </small>\r\n      }\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "KanbanColumnComponent",
-            "id": "component-KanbanColumnComponent-c7124d2b5879ab0a78a8f03491df7aa8d261323da7caf3167dcc436d4873a51e490d83c6047fcb711e1a1aca6e12c4de89ab7b31cb8c0e0c37efe0f033486034",
+            "id": "component-KanbanColumnComponent-ac1acfe7a14a374dfafcacbc925bce30040033d1e00a9239ec3a7136a059dcc584618c57ef4a6ac78454c803f94e583bca56fef53c92c9babebb604c6f0c9b7e",
             "file": "src/app/kanban/components/kanban-column/kanban-column.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -6193,8 +6189,9 @@
                 "./kanban-column.component.scss"
             ],
             "styles": [],
-            "template": "<div class=\"kanban-column\" [style.border-left-color]=\"column.color\">\n  <!-- Column Header -->\n  <div class=\"column-header\">\n    <div class=\"column-title-section\">\n      <input\n        #titleInput\n        *ngIf=\"isEditingTitle; else titleDisplay\"\n        [(ngModel)]=\"editableTitle\"\n        class=\"title-input\"\n        (blur)=\"saveTitleChanges()\"\n        (keydown.enter)=\"saveTitleChanges()\"\n        (keydown.escape)=\"cancelTitleEditing()\"\n        maxlength=\"50\"\n      />\n      <ng-template #titleDisplay>\n        <h2 class=\"column-title\" (dblclick)=\"startTitleEditing()\">\n          {{ column.title }}\n        </h2>\n      </ng-template>\n\n      <div class=\"column-info\">\n        <span class=\"card-count\">{{ cards.length }}</span>\n        <span class=\"wip-limit\" *ngIf=\"column.wipLimit\" [class.exceeded]=\"isWipLimitExceeded()\">\n          / {{ column.wipLimit }}\n        </span>\n      </div>\n    </div>\n\n    <div class=\"column-actions\">\n      <button\n        class=\"add-card-btn\"\n        (click)=\"startAddingCard()\"\n        [disabled]=\"isAddingCard || !allowCardCreation()\"\n        title=\"Add new card\"\n      >\n        +\n      </button>\n\n      <button\n        class=\"column-menu-btn\"\n        (click)=\"toggleColumnMenu()\"\n        title=\"Column options\"\n      >\n        ⋮\n      </button>\n    </div>\n  </div>\n\n  <!-- Column Description -->\n  <div class=\"column-description\" *ngIf=\"column.description\">\n    <p>{{ column.description }}</p>\n  </div>\n\n  <!-- Add Card Form -->\n  <div class=\"add-card-form\" *ngIf=\"isAddingCard\">\n    <input\n      #newCardInput\n      [(ngModel)]=\"newCardTitle\"\n      class=\"new-card-input\"\n      placeholder=\"Enter card title...\"\n      (keydown.enter)=\"addCard()\"\n      (keydown.escape)=\"cancelAddingCard()\"\n      (blur)=\"addCard()\"\n      maxlength=\"100\"\n    />\n    <div class=\"add-card-actions\">\n      <button class=\"save-btn\" (click)=\"addCard()\" [disabled]=\"!newCardTitle.trim()\">\n        Add Card\n      </button>\n      <button class=\"cancel-btn\" (click)=\"cancelAddingCard()\">\n        Cancel\n      </button>\n    </div>\n  </div>\n\n  <!-- Cards Drop List -->\n  <div\n    class=\"cards-container\"\n    cdkDropList\n    [cdkDropListData]=\"cards\"\n    [cdkDropListConnectedTo]=\"connectedDropLists\"\n    [cdkDropListDisabled]=\"!allowDrop\"\n    (cdkDropListDropped)=\"onCardDropped($event)\"\n    [id]=\"'column-' + column.id\"\n  >\n    <div\n      *ngFor=\"let card of cards; trackBy: trackByCardId\"\n      cdkDrag\n      [cdkDragData]=\"card\"\n      [cdkDragDisabled]=\"!allowDrag\"\n      class=\"card-drag-container\"\n    >\n      <app-kanban-card\n        [card]=\"card\"\n        [editable]=\"editable\"\n        [isSelected]=\"selectedCardId === card.id\"\n        [isDragging]=\"false\"\n        (cardUpdated)=\"onCardUpdated(card.id, $event)\"\n        (cardDeleted)=\"onCardDeleted($event)\"\n        (cardSelected)=\"onCardSelected($event)\"\n      ></app-kanban-card>\n    </div>\n\n    <!-- Empty State -->\n    <div class=\"empty-state\" *ngIf=\"cards.length === 0 && !isAddingCard\">\n      <p>No cards yet</p>\n      <button class=\"add-first-card-btn\" (click)=\"startAddingCard()\">\n        Add a card\n      </button>\n    </div>\n\n    <!-- Drop Placeholder -->\n    <div class=\"drop-placeholder\" *cdkDragPlaceholder>\n      <div class=\"placeholder-card\">Drop card here</div>\n    </div>\n  </div>\n\n  <!-- Column Menu -->\n  <div class=\"column-menu\" *ngIf=\"showColumnMenu\" (clickOutside)=\"closeColumnMenu()\">\n    <button (click)=\"startTitleEditing(); closeColumnMenu()\">Edit Title</button>\n    <button (click)=\"clearColumn(); closeColumnMenu()\" [disabled]=\"cards.length === 0\">\n      Clear All Cards\n    </button>\n    <button (click)=\"toggleCollapse(); closeColumnMenu()\">\n      {{ column.isCollapsed ? 'Expand' : 'Collapse' }}\n    </button>\n  </div>\n</div>\n",
-            "templateUrl": [],
+            "templateUrl": [
+                "./kanban-column.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
@@ -6203,7 +6200,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 175,
+                    "line": 40,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -6212,7 +6209,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 174,
+                    "line": 39,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -6221,7 +6218,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 173,
+                    "line": 38,
                     "type": "KanbanCard[]",
                     "decorators": []
                 },
@@ -6229,7 +6226,7 @@
                     "name": "column",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 172,
+                    "line": 37,
                     "type": "KanbanColumn",
                     "decorators": []
                 },
@@ -6238,7 +6235,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 177,
+                    "line": 42,
                     "type": "string[]",
                     "decorators": []
                 },
@@ -6247,7 +6244,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 176,
+                    "line": 41,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -6256,7 +6253,7 @@
                     "defaultValue": "null",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 178,
+                    "line": 43,
                     "type": "string | null",
                     "decorators": []
                 }
@@ -6267,7 +6264,7 @@
                     "defaultValue": "new EventEmitter<CreateKanbanCardRequest>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 181,
+                    "line": 46,
                     "type": "EventEmitter"
                 },
                 {
@@ -6275,7 +6272,7 @@
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 183,
+                    "line": 48,
                     "type": "EventEmitter"
                 },
                 {
@@ -6283,7 +6280,7 @@
                     "defaultValue": "new EventEmitter<CdkDragDrop<KanbanCard[]>>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 180,
+                    "line": 45,
                     "type": "EventEmitter"
                 },
                 {
@@ -6291,7 +6288,7 @@
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 184,
+                    "line": 49,
                     "type": "EventEmitter"
                 },
                 {
@@ -6299,7 +6296,7 @@
                     "defaultValue": "new EventEmitter<{ cardId: string; updates: UpdateKanbanCardRequest }>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 182,
+                    "line": 47,
                     "type": "EventEmitter"
                 },
                 {
@@ -6307,7 +6304,7 @@
                     "defaultValue": "new EventEmitter<{ columnId: string; updates: Partial<KanbanColumn> }>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 185,
+                    "line": 50,
                     "type": "EventEmitter"
                 }
             ],
@@ -6321,7 +6318,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 191
+                    "line": 56
                 },
                 {
                     "name": "isAddingCard",
@@ -6332,7 +6329,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 192
+                    "line": 57
                 },
                 {
                     "name": "isEditingTitle",
@@ -6343,7 +6340,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 190
+                    "line": 55
                 },
                 {
                     "name": "newCardInput",
@@ -6353,7 +6350,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "",
-                    "line": 188,
+                    "line": 53,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -6373,7 +6370,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 193
+                    "line": 58
                 },
                 {
                     "name": "showColumnMenu",
@@ -6384,7 +6381,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 194
+                    "line": 59
                 },
                 {
                     "name": "titleInput",
@@ -6394,7 +6391,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "",
-                    "line": 187,
+                    "line": 52,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -6413,7 +6410,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 248,
+                    "line": 113,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6423,7 +6420,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 314,
+                    "line": 179,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6433,7 +6430,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 263,
+                    "line": 128,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6443,7 +6440,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 231,
+                    "line": 96,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6453,7 +6450,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 298,
+                    "line": 163,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6463,7 +6460,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 294,
+                    "line": 159,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6473,7 +6470,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 324,
+                    "line": 189,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6483,7 +6480,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 320,
+                    "line": 185,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6493,7 +6490,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 200,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6503,7 +6500,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 196,
+                    "line": 61,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6520,7 +6517,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 272,
+                    "line": 137,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -6548,7 +6545,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 281,
+                    "line": 146,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -6576,7 +6573,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 276,
+                    "line": 141,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -6610,7 +6607,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 268,
+                    "line": 133,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -6640,7 +6637,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 217,
+                    "line": 82,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6650,7 +6647,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 237,
+                    "line": 102,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6660,7 +6657,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 205,
+                    "line": 70,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6670,7 +6667,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 306,
+                    "line": 171,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6680,7 +6677,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 290,
+                    "line": 155,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -6688,7 +6685,7 @@
                     "name": "trackByCardId",
                     "args": [
                         {
-                            "name": "index",
+                            "name": "_index",
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": ""
@@ -6703,12 +6700,12 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 285,
+                    "line": 150,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "index",
+                            "name": "_index",
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -6735,10 +6732,6 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
                     "name": "FormsModule",
                     "type": "module"
                 },
@@ -6759,7 +6752,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  OnInit,\r\n  OnDestroy,\r\n  ViewChild,\r\n  ElementRef\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\nimport {\r\n  CdkDragDrop,\r\n  CdkDrag,\r\n  CdkDropList,\r\n  CdkDropListGroup,\r\n  CdkDragPlaceholder,\r\n  moveItemInArray,\r\n  transferArrayItem\r\n} from '@angular/cdk/drag-drop';\r\nimport { KanbanCard, KanbanColumn, CreateKanbanCardRequest, UpdateKanbanCardRequest } from '../../models';\r\nimport { CardMoveEvent } from '../../types';\r\nimport { KanbanCardComponent } from '../kanban-card/kanban-card.component';\r\n\r\n@Component({\r\n  selector: 'app-kanban-column',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    FormsModule,\r\n    CdkDropList,\r\n    CdkDrag,\r\n    CdkDragPlaceholder,\r\n    KanbanCardComponent\r\n  ],\r\n  template: `\r\n    <div class=\"kanban-column\" [style.border-left-color]=\"column.color\">\r\n      <!-- Column Header -->\r\n      <div class=\"column-header\">\r\n        <div class=\"column-title-section\">\r\n          <input\r\n            #titleInput\r\n            *ngIf=\"isEditingTitle; else titleDisplay\"\r\n            [(ngModel)]=\"editableTitle\"\r\n            class=\"title-input\"\r\n            (blur)=\"saveTitleChanges()\"\r\n            (keydown.enter)=\"saveTitleChanges()\"\r\n            (keydown.escape)=\"cancelTitleEditing()\"\r\n            maxlength=\"50\"\r\n          />\r\n          <ng-template #titleDisplay>\r\n            <h2 class=\"column-title\" (dblclick)=\"startTitleEditing()\">\r\n              {{ column.title }}\r\n            </h2>\r\n          </ng-template>\r\n\r\n          <div class=\"column-info\">\r\n            <span class=\"card-count\">{{ cards.length }}</span>\r\n            <span class=\"wip-limit\" *ngIf=\"column.wipLimit\" [class.exceeded]=\"isWipLimitExceeded()\">\r\n              / {{ column.wipLimit }}\r\n            </span>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"column-actions\">\r\n          <button\r\n            class=\"add-card-btn\"\r\n            (click)=\"startAddingCard()\"\r\n            [disabled]=\"isAddingCard || !allowCardCreation()\"\r\n            title=\"Add new card\"\r\n          >\r\n            +\r\n          </button>\r\n\r\n          <button\r\n            class=\"column-menu-btn\"\r\n            (click)=\"toggleColumnMenu()\"\r\n            title=\"Column options\"\r\n          >\r\n            ⋮\r\n          </button>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Column Description -->\r\n      <div class=\"column-description\" *ngIf=\"column.description\">\r\n        <p>{{ column.description }}</p>\r\n      </div>\r\n\r\n      <!-- Add Card Form -->\r\n      <div class=\"add-card-form\" *ngIf=\"isAddingCard\">\r\n        <input\r\n          #newCardInput\r\n          [(ngModel)]=\"newCardTitle\"\r\n          class=\"new-card-input\"\r\n          placeholder=\"Enter card title...\"\r\n          (keydown.enter)=\"addCard()\"\r\n          (keydown.escape)=\"cancelAddingCard()\"\r\n          (blur)=\"addCard()\"\r\n          maxlength=\"100\"\r\n        />\r\n        <div class=\"add-card-actions\">\r\n          <button class=\"save-btn\" (click)=\"addCard()\" [disabled]=\"!newCardTitle.trim()\">\r\n            Add Card\r\n          </button>\r\n          <button class=\"cancel-btn\" (click)=\"cancelAddingCard()\">\r\n            Cancel\r\n          </button>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Cards Drop List -->\r\n      <div\r\n        class=\"cards-container\"\r\n        cdkDropList\r\n        [cdkDropListData]=\"cards\"\r\n        [cdkDropListConnectedTo]=\"connectedDropLists\"\r\n        [cdkDropListDisabled]=\"!allowDrop\"\r\n        (cdkDropListDropped)=\"onCardDropped($event)\"\r\n        [id]=\"'column-' + column.id\"\r\n      >\r\n        <div\r\n          *ngFor=\"let card of cards; trackBy: trackByCardId\"\r\n          cdkDrag\r\n          [cdkDragData]=\"card\"\r\n          [cdkDragDisabled]=\"!allowDrag\"\r\n          class=\"card-drag-container\"\r\n        >\r\n          <app-kanban-card\r\n            [card]=\"card\"\r\n            [editable]=\"editable\"\r\n            [isSelected]=\"selectedCardId === card.id\"\r\n            [isDragging]=\"false\"\r\n            (cardUpdated)=\"onCardUpdated(card.id, $event)\"\r\n            (cardDeleted)=\"onCardDeleted($event)\"\r\n            (cardSelected)=\"onCardSelected($event)\"\r\n          ></app-kanban-card>\r\n        </div>\r\n\r\n        <!-- Empty State -->\r\n        <div class=\"empty-state\" *ngIf=\"cards.length === 0 && !isAddingCard\">\r\n          <p>No cards yet</p>\r\n          <button class=\"add-first-card-btn\" (click)=\"startAddingCard()\">\r\n            Add a card\r\n          </button>\r\n        </div>\r\n\r\n        <!-- Drop Placeholder -->\r\n        <div class=\"drop-placeholder\" *cdkDragPlaceholder>\r\n          <div class=\"placeholder-card\">Drop card here</div>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Column Menu -->\r\n      <div class=\"column-menu\" *ngIf=\"showColumnMenu\" (clickOutside)=\"closeColumnMenu()\">\r\n        <button (click)=\"startTitleEditing(); closeColumnMenu()\">Edit Title</button>\r\n        <button (click)=\"clearColumn(); closeColumnMenu()\" [disabled]=\"cards.length === 0\">\r\n          Clear All Cards\r\n        </button>\r\n        <button (click)=\"toggleCollapse(); closeColumnMenu()\">\r\n          {{ column.isCollapsed ? 'Expand' : 'Collapse' }}\r\n        </button>\r\n      </div>\r\n    </div>\r\n  `,\r\n  styleUrls: ['./kanban-column.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class KanbanColumnComponent implements OnInit, OnDestroy {\r\n  @Input() column!: KanbanColumn;\r\n  @Input() cards: KanbanCard[] = [];\r\n  @Input() allowDrop = true;\r\n  @Input() allowDrag = true;\r\n  @Input() editable = true;\r\n  @Input() connectedDropLists: string[] = [];\r\n  @Input() selectedCardId: string | null = null;\r\n\r\n  @Output() cardDropped = new EventEmitter<CdkDragDrop<KanbanCard[]>>();\r\n  @Output() cardAdded = new EventEmitter<CreateKanbanCardRequest>();\r\n  @Output() cardUpdated = new EventEmitter<{ cardId: string; updates: UpdateKanbanCardRequest }>();\r\n  @Output() cardDeleted = new EventEmitter<string>();\r\n  @Output() cardSelected = new EventEmitter<string>();\r\n  @Output() columnUpdated = new EventEmitter<{ columnId: string; updates: Partial<KanbanColumn> }>();\r\n\r\n  @ViewChild('titleInput') titleInput?: ElementRef<HTMLInputElement>;\r\n  @ViewChild('newCardInput') newCardInput?: ElementRef<HTMLInputElement>;\r\n\r\n  isEditingTitle = false;\r\n  editableTitle = '';\r\n  isAddingCard = false;\r\n  newCardTitle = '';\r\n  showColumnMenu = false;\r\n\r\n  ngOnInit(): void {\r\n    this.editableTitle = this.column.title;\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    // Cleanup if needed\r\n  }\r\n\r\n  // Title editing\r\n  startTitleEditing(): void {\r\n    if (!this.editable) return;\r\n\r\n    this.isEditingTitle = true;\r\n    this.editableTitle = this.column.title;\r\n\r\n    setTimeout(() => {\r\n      this.titleInput?.nativeElement.focus();\r\n      this.titleInput?.nativeElement.select();\r\n    });\r\n  }\r\n\r\n  saveTitleChanges(): void {\r\n    if (!this.isEditingTitle) return;\r\n\r\n    const newTitle = this.editableTitle.trim();\r\n    if (newTitle && newTitle !== this.column.title) {\r\n      this.columnUpdated.emit({\r\n        columnId: this.column.id,\r\n        updates: { title: newTitle }\r\n      });\r\n    }\r\n\r\n    this.cancelTitleEditing();\r\n  }\r\n\r\n  cancelTitleEditing(): void {\r\n    this.isEditingTitle = false;\r\n    this.editableTitle = this.column.title;\r\n  }\r\n\r\n  // Card management\r\n  startAddingCard(): void {\r\n    if (!this.allowCardCreation()) return;\r\n\r\n    this.isAddingCard = true;\r\n    this.newCardTitle = '';\r\n\r\n    setTimeout(() => {\r\n      this.newCardInput?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  addCard(): void {\r\n    if (!this.newCardTitle.trim()) {\r\n      this.cancelAddingCard();\r\n      return;\r\n    }\r\n\r\n    const cardRequest: CreateKanbanCardRequest = {\r\n      title: this.newCardTitle.trim(),\r\n      columnId: this.column.id\r\n    };\r\n\r\n    this.cardAdded.emit(cardRequest);\r\n    this.cancelAddingCard();\r\n  }\r\n\r\n  cancelAddingCard(): void {\r\n    this.isAddingCard = false;\r\n    this.newCardTitle = '';\r\n  }\r\n\r\n  onCardUpdated(cardId: string, updates: UpdateKanbanCardRequest): void {\r\n    this.cardUpdated.emit({ cardId, updates });\r\n  }\r\n\r\n  onCardDeleted(cardId: string): void {\r\n    this.cardDeleted.emit(cardId);\r\n  }\r\n\r\n  onCardSelected(cardId: string): void {\r\n    this.cardSelected.emit(cardId);\r\n  }\r\n\r\n  // Drag and drop\r\n  onCardDropped(event: CdkDragDrop<KanbanCard[]>): void {\r\n    this.cardDropped.emit(event);\r\n  }\r\n\r\n  trackByCardId(index: number, card: KanbanCard): string {\r\n    return card.id;\r\n  }\r\n\r\n  // Column menu\r\n  toggleColumnMenu(): void {\r\n    this.showColumnMenu = !this.showColumnMenu;\r\n  }\r\n\r\n  closeColumnMenu(): void {\r\n    this.showColumnMenu = false;\r\n  }\r\n\r\n  clearColumn(): void {\r\n    if (confirm(`Are you sure you want to delete all ${this.cards.length} cards in this column?`)) {\r\n      this.cards.forEach(card => {\r\n        this.cardDeleted.emit(card.id);\r\n      });\r\n    }\r\n  }\r\n\r\n  toggleCollapse(): void {\r\n    this.columnUpdated.emit({\r\n      columnId: this.column.id,\r\n      updates: { isCollapsed: !this.column.isCollapsed }\r\n    });\r\n  }\r\n\r\n  // Utility methods\r\n  allowCardCreation(): boolean {\r\n    if (!this.editable) return false;\r\n    if (this.column.cardLimit && this.cards.length >= this.column.cardLimit) return false;\r\n    return true;\r\n  }\r\n\r\n  isWipLimitExceeded(): boolean {\r\n    return !!(this.column.wipLimit && this.cards.length > this.column.wipLimit);\r\n  }\r\n\r\n  getCardCountText(): string {\r\n    const count = this.cards.length;\r\n    return count === 1 ? '1 card' : `${count} cards`;\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  OnInit,\r\n  OnDestroy,\r\n  ViewChild,\r\n  ElementRef\r\n} from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport {\r\n  CdkDragDrop,\r\n  CdkDrag,\r\n  CdkDropList,\r\n  CdkDragPlaceholder\r\n} from '@angular/cdk/drag-drop';\r\nimport { KanbanCard, KanbanColumn, CreateKanbanCardRequest, UpdateKanbanCardRequest } from '../../models';\r\nimport { KanbanCardComponent } from '../kanban-card/kanban-card.component';\r\n\r\n@Component({\r\n  selector: 'app-kanban-column',\r\n  standalone: true,\r\n  imports: [\r\n    FormsModule,\r\n    CdkDropList,\r\n    CdkDrag,\r\n    CdkDragPlaceholder,\r\n    KanbanCardComponent\r\n  ],\r\n  templateUrl: './kanban-column.component.html',\r\n  styleUrls: ['./kanban-column.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class KanbanColumnComponent implements OnInit, OnDestroy {\r\n  @Input() column!: KanbanColumn;\r\n  @Input() cards: KanbanCard[] = [];\r\n  @Input() allowDrop = true;\r\n  @Input() allowDrag = true;\r\n  @Input() editable = true;\r\n  @Input() connectedDropLists: string[] = [];\r\n  @Input() selectedCardId: string | null = null;\r\n\r\n  @Output() cardDropped = new EventEmitter<CdkDragDrop<KanbanCard[]>>();\r\n  @Output() cardAdded = new EventEmitter<CreateKanbanCardRequest>();\r\n  @Output() cardUpdated = new EventEmitter<{ cardId: string; updates: UpdateKanbanCardRequest }>();\r\n  @Output() cardDeleted = new EventEmitter<string>();\r\n  @Output() cardSelected = new EventEmitter<string>();\r\n  @Output() columnUpdated = new EventEmitter<{ columnId: string; updates: Partial<KanbanColumn> }>();\r\n\r\n  @ViewChild('titleInput') titleInput?: ElementRef<HTMLInputElement>;\r\n  @ViewChild('newCardInput') newCardInput?: ElementRef<HTMLInputElement>;\r\n\r\n  isEditingTitle = false;\r\n  editableTitle = '';\r\n  isAddingCard = false;\r\n  newCardTitle = '';\r\n  showColumnMenu = false;\r\n\r\n  ngOnInit(): void {\r\n    this.editableTitle = this.column.title;\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    // Cleanup if needed\r\n  }\r\n\r\n  // Title editing\r\n  startTitleEditing(): void {\r\n    if (!this.editable) return;\r\n\r\n    this.isEditingTitle = true;\r\n    this.editableTitle = this.column.title;\r\n\r\n    setTimeout(() => {\r\n      this.titleInput?.nativeElement.focus();\r\n      this.titleInput?.nativeElement.select();\r\n    });\r\n  }\r\n\r\n  saveTitleChanges(): void {\r\n    if (!this.isEditingTitle) return;\r\n\r\n    const newTitle = this.editableTitle.trim();\r\n    if (newTitle && newTitle !== this.column.title) {\r\n      this.columnUpdated.emit({\r\n        columnId: this.column.id,\r\n        updates: { title: newTitle }\r\n      });\r\n    }\r\n\r\n    this.cancelTitleEditing();\r\n  }\r\n\r\n  cancelTitleEditing(): void {\r\n    this.isEditingTitle = false;\r\n    this.editableTitle = this.column.title;\r\n  }\r\n\r\n  // Card management\r\n  startAddingCard(): void {\r\n    if (!this.allowCardCreation()) return;\r\n\r\n    this.isAddingCard = true;\r\n    this.newCardTitle = '';\r\n\r\n    setTimeout(() => {\r\n      this.newCardInput?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  addCard(): void {\r\n    if (!this.newCardTitle.trim()) {\r\n      this.cancelAddingCard();\r\n      return;\r\n    }\r\n\r\n    const cardRequest: CreateKanbanCardRequest = {\r\n      title: this.newCardTitle.trim(),\r\n      columnId: this.column.id\r\n    };\r\n\r\n    this.cardAdded.emit(cardRequest);\r\n    this.cancelAddingCard();\r\n  }\r\n\r\n  cancelAddingCard(): void {\r\n    this.isAddingCard = false;\r\n    this.newCardTitle = '';\r\n  }\r\n\r\n  onCardUpdated(cardId: string, updates: UpdateKanbanCardRequest): void {\r\n    this.cardUpdated.emit({ cardId, updates });\r\n  }\r\n\r\n  onCardDeleted(cardId: string): void {\r\n    this.cardDeleted.emit(cardId);\r\n  }\r\n\r\n  onCardSelected(cardId: string): void {\r\n    this.cardSelected.emit(cardId);\r\n  }\r\n\r\n  // Drag and drop\r\n  onCardDropped(event: CdkDragDrop<KanbanCard[]>): void {\r\n    this.cardDropped.emit(event);\r\n  }\r\n\r\n  trackByCardId(_index: number, card: KanbanCard): string {\r\n    return card.id;\r\n  }\r\n\r\n  // Column menu\r\n  toggleColumnMenu(): void {\r\n    this.showColumnMenu = !this.showColumnMenu;\r\n  }\r\n\r\n  closeColumnMenu(): void {\r\n    this.showColumnMenu = false;\r\n  }\r\n\r\n  clearColumn(): void {\r\n    if (confirm(`Are you sure you want to delete all ${this.cards.length} cards in this column?`)) {\r\n      this.cards.forEach(card => {\r\n        this.cardDeleted.emit(card.id);\r\n      });\r\n    }\r\n  }\r\n\r\n  toggleCollapse(): void {\r\n    this.columnUpdated.emit({\r\n      columnId: this.column.id,\r\n      updates: { isCollapsed: !this.column.isCollapsed }\r\n    });\r\n  }\r\n\r\n  // Utility methods\r\n  allowCardCreation(): boolean {\r\n    if (!this.editable) return false;\r\n    if (this.column.cardLimit && this.cards.length >= this.column.cardLimit) return false;\r\n    return true;\r\n  }\r\n\r\n  isWipLimitExceeded(): boolean {\r\n    return !!(this.column.wipLimit && this.cards.length > this.column.wipLimit);\r\n  }\r\n\r\n  getCardCountText(): string {\r\n    const count = this.cards.length;\r\n    return count === 1 ? '1 card' : `${count} cards`;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -6772,7 +6765,8 @@
             "implements": [
                 "OnInit",
                 "OnDestroy"
-            ]
+            ],
+            "templateData": "<div class=\"kanban-column\" [style.border-left-color]=\"column.color\">\r\n  <!-- Column Header -->\r\n  <div class=\"column-header\">\r\n    <div class=\"column-title-section\">\r\n      @if (isEditingTitle) {\r\n        <input\r\n          #titleInput\r\n          [(ngModel)]=\"editableTitle\"\r\n          class=\"title-input\"\r\n          (blur)=\"saveTitleChanges()\"\r\n          (keydown.enter)=\"saveTitleChanges()\"\r\n          (keydown.escape)=\"cancelTitleEditing()\"\r\n          maxlength=\"50\"\r\n        />\r\n      } @else {\r\n        <h2 class=\"column-title\" (dblclick)=\"startTitleEditing()\">\r\n          {{ column.title }}\r\n        </h2>\r\n      }\r\n\r\n      <div class=\"column-info\">\r\n        <span class=\"card-count\">{{ cards.length }}</span>\r\n        @if (column.wipLimit) {\r\n          <span class=\"wip-limit\" [class.exceeded]=\"isWipLimitExceeded()\">\r\n            / {{ column.wipLimit }}\r\n          </span>\r\n        }\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"column-actions\">\r\n      <button\r\n        class=\"add-card-btn\"\r\n        (click)=\"startAddingCard()\"\r\n        [disabled]=\"isAddingCard || !allowCardCreation()\"\r\n        title=\"Add new card\"\r\n      >\r\n        +\r\n      </button>\r\n\r\n      <button\r\n        class=\"column-menu-btn\"\r\n        (click)=\"toggleColumnMenu()\"\r\n        title=\"Column options\"\r\n      >\r\n        ⋮\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- Column Description -->\r\n  @if (column.description) {\r\n    <div class=\"column-description\">\r\n      <p>{{ column.description }}</p>\r\n    </div>\r\n  }\r\n\r\n  <!-- Add Card Form -->\r\n  @if (isAddingCard) {\r\n    <div class=\"add-card-form\">\r\n      <input\r\n        #newCardInput\r\n        [(ngModel)]=\"newCardTitle\"\r\n        class=\"new-card-input\"\r\n        placeholder=\"Enter card title...\"\r\n        (keydown.enter)=\"addCard()\"\r\n        (keydown.escape)=\"cancelAddingCard()\"\r\n        (blur)=\"addCard()\"\r\n        maxlength=\"100\"\r\n      />\r\n      <div class=\"add-card-actions\">\r\n        <button class=\"save-btn\" (click)=\"addCard()\" [disabled]=\"!newCardTitle.trim()\">\r\n          Add Card\r\n        </button>\r\n        <button class=\"cancel-btn\" (click)=\"cancelAddingCard()\">\r\n          Cancel\r\n        </button>\r\n      </div>\r\n    </div>\r\n  }\r\n\r\n  <!-- Cards Drop List -->\r\n  <div\r\n    class=\"cards-container\"\r\n    cdkDropList\r\n    [cdkDropListData]=\"cards\"\r\n    [cdkDropListConnectedTo]=\"connectedDropLists\"\r\n    [cdkDropListDisabled]=\"!allowDrop\"\r\n    (cdkDropListDropped)=\"onCardDropped($event)\"\r\n    [id]=\"'column-' + column.id\"\r\n  >\r\n    @for (card of cards; track card.id) {\r\n      <div\r\n        cdkDrag\r\n        [cdkDragData]=\"card\"\r\n        [cdkDragDisabled]=\"!allowDrag\"\r\n        class=\"card-drag-container\"\r\n      >\r\n        <app-kanban-card\r\n          [card]=\"card\"\r\n          [editable]=\"editable\"\r\n          [isSelected]=\"selectedCardId === card.id\"\r\n          [isDragging]=\"false\"\r\n          (cardUpdated)=\"onCardUpdated(card.id, $event)\"\r\n          (cardDeleted)=\"onCardDeleted($event)\"\r\n          (cardSelected)=\"onCardSelected($event)\"\r\n        ></app-kanban-card>\r\n      </div>\r\n    }\r\n\r\n    <!-- Empty State -->\r\n    @if (cards.length === 0 && !isAddingCard) {\r\n      <div class=\"empty-state\">\r\n        <p>No cards yet</p>\r\n        <button class=\"add-first-card-btn\" (click)=\"startAddingCard()\">\r\n          Add a card\r\n        </button>\r\n      </div>\r\n    }\r\n\r\n    <!-- Drop Placeholder -->\r\n    <div class=\"drop-placeholder\" *cdkDragPlaceholder>\r\n      <div class=\"placeholder-card\">Drop card here</div>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- Column Menu -->\r\n  @if (showColumnMenu) {\r\n    <div class=\"column-menu\" (clickOutside)=\"closeColumnMenu()\">\r\n      <button (click)=\"startTitleEditing(); closeColumnMenu()\">Edit Title</button>\r\n      <button (click)=\"clearColumn(); closeColumnMenu()\" [disabled]=\"cards.length === 0\">\r\n        Clear All Cards\r\n      </button>\r\n      <button (click)=\"toggleCollapse(); closeColumnMenu()\">\r\n        {{ column.isCollapsed ? 'Expand' : 'Collapse' }}\r\n      </button>\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "PageComponent",

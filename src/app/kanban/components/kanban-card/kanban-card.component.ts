@@ -9,118 +9,14 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { KanbanCard, UpdateKanbanCardRequest } from '../../models';
 
 @Component({
   selector: 'app-kanban-card',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  template: `
-    <div
-      class="kanban-card"
-      [class.selected]="isSelected"
-      [class.editing]="isEditing"
-      [class.dragging]="isDragging"
-      (click)="onCardClick()"
-      (dblclick)="startEditing()"
-    >
-      <!-- Card Header -->
-      <div class="card-header">
-        <div class="card-title-section">
-          <input
-            #titleInput
-            *ngIf="isEditing; else titleDisplay"
-            [(ngModel)]="editableCard.title"
-            class="title-input"
-            (keydown.enter)="saveChanges()"
-            (keydown.escape)="cancelEditing()"
-            maxlength="100"
-          />
-          <ng-template #titleDisplay>
-            <h3 class="card-title">{{ card.title }}</h3>
-          </ng-template>
-        </div>
-
-        <div class="card-actions" *ngIf="editable">
-          <button
-            class="edit-btn"
-            (click)="startEditing(); $event.stopPropagation()"
-            [disabled]="isEditing"
-            title="Edit card"
-          >
-            ✏️
-          </button>
-          <button
-            class="delete-btn"
-            (click)="onDelete(); $event.stopPropagation()"
-            title="Delete card"
-          >
-            🗑️
-          </button>
-        </div>
-      </div>
-
-      <!-- Card Description -->
-      <div class="card-description" *ngIf="card.description || isEditing">
-        <textarea
-          *ngIf="isEditing; else descriptionDisplay"
-          [(ngModel)]="editableCard.description"
-          class="description-input"
-          placeholder="Add a description..."
-          (keydown.escape)="cancelEditing()"
-          (keydown.enter)="saveChanges()"
-          rows="3"
-          maxlength="500"
-        ></textarea>
-        <ng-template #descriptionDisplay>
-          <p class="description-text">{{ card.description }}</p>
-        </ng-template>
-      </div>
-
-      <!-- Edit Actions -->
-      <div class="edit-actions" *ngIf="isEditing">
-        <button class="save-btn" (click)="saveChanges()">Save</button>
-        <button class="cancel-btn" (click)="cancelEditing()">Cancel</button>
-      </div>
-
-      <!-- Card Metadata -->
-      <div class="card-metadata" *ngIf="hasMetadata()">
-        <!-- Priority -->
-        <div class="priority-badge" *ngIf="card.priority" [class]="'priority-' + card.priority">
-          {{ card.priority.toUpperCase() }}
-        </div>
-
-        <!-- Tags -->
-        <div class="tags" *ngIf="card.tags && card.tags.length > 0">
-          <span class="tag" *ngFor="let tag of card.tags">{{ tag }}</span>
-        </div>
-
-        <!-- Due Date -->
-        <div class="due-date" *ngIf="card.dueDate" [class.overdue]="isOverdue()">
-          📅 {{ formatDate(card.dueDate) }}
-        </div>
-
-        <!-- Assignees -->
-        <div class="assignees" *ngIf="card.assignees && card.assignees.length > 0">
-          <span class="assignee" *ngFor="let assignee of card.assignees">
-            {{ getInitials(assignee) }}
-          </span>
-        </div>
-      </div>
-
-      <!-- Card Footer -->
-      <div class="card-footer">
-        <div class="card-timestamps">
-          <small class="created-date">Created: {{ formatDate(card.createdAt) }}</small>
-          <small class="updated-date" *ngIf="card.updatedAt !== card.createdAt">
-            Updated: {{ formatDate(card.updatedAt) }}
-          </small>
-        </div>
-      </div>
-    </div>
-  `,
+  imports: [FormsModule],
+  templateUrl: './kanban-card.component.html',
   styleUrls: ['./kanban-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,0 +1,124 @@
+<div
+  class="kanban-card"
+  [class.selected]="isSelected"
+  [class.editing]="isEditing"
+  [class.dragging]="isDragging"
+  (click)="onCardClick()"
+  (dblclick)="startEditing()"
+>
+  <!-- Card Header -->
+  <div class="card-header">
+    <div class="card-title-section">
+      @if (isEditing) {
+        <input
+          #titleInput
+          [(ngModel)]="editableCard.title"
+          class="title-input"
+          (keydown.enter)="saveChanges()"
+          (keydown.escape)="cancelEditing()"
+          maxlength="100"
+        />
+      } @else {
+        <h3 class="card-title">{{ card.title }}</h3>
+      }
+    </div>
+
+    @if (editable) {
+      <div class="card-actions">
+        <button
+          class="edit-btn"
+          (click)="startEditing(); $event.stopPropagation()"
+          [disabled]="isEditing"
+          title="Edit card"
+        >
+          ✏️
+        </button>
+        <button
+          class="delete-btn"
+          (click)="onDelete(); $event.stopPropagation()"
+          title="Delete card"
+        >
+          🗑️
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Card Description -->
+  @if (card.description || isEditing) {
+    <div class="card-description">
+      @if (isEditing) {
+        <textarea
+          [(ngModel)]="editableCard.description"
+          class="description-input"
+          placeholder="Add a description..."
+          (keydown.escape)="cancelEditing()"
+          (keydown.enter)="saveChanges()"
+          rows="3"
+          maxlength="500"
+        ></textarea>
+      } @else {
+        <p class="description-text">{{ card.description }}</p>
+      }
+    </div>
+  }
+
+  <!-- Edit Actions -->
+  @if (isEditing) {
+    <div class="edit-actions">
+      <button class="save-btn" (click)="saveChanges()">Save</button>
+      <button class="cancel-btn" (click)="cancelEditing()">Cancel</button>
+    </div>
+  }
+
+  <!-- Card Metadata -->
+  @if (hasMetadata()) {
+    <div class="card-metadata">
+      <!-- Priority -->
+      @if (card.priority) {
+        <div class="priority-badge" [class]="'priority-' + card.priority">
+          {{ card.priority.toUpperCase() }}
+        </div>
+      }
+
+      <!-- Tags -->
+      @if (card.tags && card.tags.length > 0) {
+        <div class="tags">
+          @for (tag of card.tags; track tag) {
+            <span class="tag">{{ tag }}</span>
+          }
+        </div>
+      }
+
+      <!-- Due Date -->
+      @if (card.dueDate) {
+        <div class="due-date" [class.overdue]="isOverdue()">
+          📅 {{ formatDate(card.dueDate) }}
+        </div>
+      }
+
+      <!-- Assignees -->
+      @if (card.assignees && card.assignees.length > 0) {
+        <div class="assignees">
+          @for (assignee of card.assignees; track assignee) {
+            <span class="assignee">
+              {{ getInitials(assignee) }}
+            </span>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Card Footer -->
+  <div class="card-footer">
+    <div class="card-timestamps">
+      <small class="created-date">Created: {{ formatDate(card.createdAt) }}</small>
+      @if (card.updatedAt !== card.createdAt) {
+        <small class="updated-date">
+          Updated: {{ formatDate(card.updatedAt) }}
+        </small>
+      }
+    </div>
+  </div>
+</div>

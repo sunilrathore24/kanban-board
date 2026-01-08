@@ -9,11 +9,7 @@ import {
   ChangeDetectorRef,
   inject
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  CdkDragDrop,
-  CdkDropListGroup
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { Subject, takeUntil } from 'rxjs';
 
 import {
@@ -36,89 +32,10 @@ import { KanbanColumnComponent } from '../kanban-column/kanban-column.component'
   selector: 'app-kanban-board',
   standalone: true,
   imports: [
-    CommonModule,
     CdkDropListGroup,
     KanbanColumnComponent
   ],
-  template: `
-    <div class="kanban-board" [class.theme-applied]="theme" [style]="getBoardStyles()">
-      <!-- Board Header -->
-      <div class="board-header">
-        <div class="board-title-section">
-          <h1 class="board-title">{{ boardState?.title || 'Kanban Board' }}</h1>
-          <div class="board-info">
-            <span class="total-cards">{{ getTotalCardCount() }} cards</span>
-            <div class="connection-status" [class]="'status-' + connectionStatus">
-              <span class="status-indicator"></span>
-              {{ getConnectionStatusText() }}
-            </div>
-          </div>
-        </div>
-
-        <div class="board-actions">
-          <button
-            class="add-column-btn"
-            (click)="addColumn()"
-            [disabled]="config.allowColumnReordering === false"
-            [title]="config.allowColumnReordering === false ? 'Column reordering disabled' : 'Add new column'"
-          >
-            + Add Column
-          </button>
-        </div>
-      </div>
-
-      <!-- Board Content -->
-      <div class="board-content" cdkDropListGroup>
-        <!-- Columns -->
-        <div class="columns-container" *ngIf="boardState && boardState.columns.length > 0">
-          <app-kanban-column
-            *ngFor="let column of boardState.columns; trackBy: trackByColumnId"
-            [column]="column"
-            [cards]="getCardsForColumn(column.id)"
-            [allowDrop]="config.allowCardCreation !== false"
-            [allowDrag]="config.allowCardCreation !== false"
-            [editable]="config.allowCardEditing !== false"
-            [connectedDropLists]="getConnectedDropLists()"
-            [selectedCardId]="selectedCardId"
-            (cardDropped)="onCardDropped($event)"
-            (cardAdded)="onCardAdded($event)"
-            (cardUpdated)="onCardUpdated($event)"
-            (cardDeleted)="onCardDeleted($event)"
-            (cardSelected)="onCardSelected($event)"
-            (columnUpdated)="onColumnUpdated($event)"
-          ></app-kanban-column>
-        </div>
-
-        <!-- Empty Board State -->
-        <div class="empty-board" *ngIf="!boardState || boardState.columns.length === 0">
-          <div class="empty-content">
-            <h2>Welcome to your Kanban Board</h2>
-            <p>Get started by adding your first column</p>
-            <button class="create-first-column-btn" (click)="addColumn()">
-              Create First Column
-            </button>
-          </div>
-        </div>
-
-        <!-- Loading State -->
-        <div class="loading-state" *ngIf="isLoading">
-          <div class="loading-spinner"></div>
-          <p>Loading board...</p>
-        </div>
-      </div>
-
-      <!-- Error State -->
-      <div class="error-state" *ngIf="error">
-        <div class="error-content">
-          <h3>Something went wrong</h3>
-          <p>{{ error }}</p>
-          <button class="retry-btn" (click)="retryConnection()">
-            Try Again
-          </button>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './kanban-board.component.html',
   styleUrls: ['./kanban-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
